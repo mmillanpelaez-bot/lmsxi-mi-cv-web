@@ -5,3 +5,7 @@
   display: flex;
   gap: 20px;
 }
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
