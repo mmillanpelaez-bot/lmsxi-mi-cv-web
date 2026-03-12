@@ -1,3 +1,25 @@
+/* Headings / Name */
+@font-face {
+  font-family: "Poppins";
+  font-style: bold;
+  font-weight: 700;
+  src: url("assets/fonts/poppins-v24-latin") format("woff2");
+}
+/* Main Paragraphs */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("assets/fonts/inter-v20-latin") format("woff2");
+}
+/* Skills / Tech Stack */
+@font-face {
+  font-family: "Fira-code";
+  font-style: normal;
+  font-weight: 400;
+  src: url("assets/fonts/fira-code-v27-latin") format("woff2");
+}
+
 :root {
   /* ---Color palette--- */
   --primary: #c084fc;
@@ -45,6 +67,7 @@
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   /* ---Fonts--- */
+  --font-heading: "Poppins", sans-serif;
   --font-primary: sans-serif;
   --font-code: "Fira Code", monospace;
 }
@@ -88,10 +111,14 @@ img {
   height: auto;
 }
 /* icons */
-svg {
-  width: clamp(1rem, 1vw + 0.5rem, 3rem);
-  height: clamp(1rem, 1vw + 0.5rem, 3rem);
-  flex-shrink: 0;
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .nav-menu {
