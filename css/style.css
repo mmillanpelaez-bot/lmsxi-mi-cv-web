@@ -1,131 +1,457 @@
-/* Headings / Name */
-@font-face {
-  font-family: "Poppins";
-  font-style: bold;
-  font-weight: 700;
-  src: url("assets/fonts/poppins-v24-latin") format("woff2");
-}
-/* Main Paragraphs */
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  src: url("assets/fonts/inter-v20-latin") format("woff2");
-}
-/* Skills / Tech Stack */
-@font-face {
-  font-family: "Fira-code";
-  font-style: normal;
-  font-weight: 400;
-  src: url("assets/fonts/fira-code-v27-latin") format("woff2");
+/* ============================================================
+ * TABLE OF CONTENTS
+ * ============================================================
+ *  1.  Color Palette Documentation
+ *  2.  CSS Custom Properties — Dark Theme (default)
+ *  3.  Light Theme Overrides  (:has — no JS)
+ *  4.  Language Visibility System  (4 radio buttons)
+ *  5.  Theme Icon Visibility
+ *  6.  Reset & Base
+ *  7.  Focus & Accessibility
+ *  8.  Body — Sticky Footer (flex column)
+ *  9.  Background Decorative Gradient
+ * 10.  Typography
+ * 11.  SVG Icons  (.icon / .icon--solid BEM)
+ * 12.  Main Layout
+ * 13.  Cards
+ * 14.  Header & Navigation
+ *       14a. Main nav — CSS Grid 3-column (brand | menu | controls)
+ *       14b. Brand / Logo
+ *       14c. Nav Menu (links list)
+ *       14d. Active Page Indicator
+ *       14e. Nav Controls group
+ *       14f. Theme Toggle
+ *       14g. Language Dropdown
+ *       14h. Hamburger Toggle
+ * 15.  Index Page
+ *       15a. Hero Section  (Flexbox)
+ *       15b. Quick-Links Grid  (CSS Grid 2×2)
+ *       15c. Blockquote
+ *       15d. Interests Grid
+ * 16.  CV Entries  (experience / education)
+ * 17.  Education Grid
+ * 18.  Skills Page
+ *       18a. Skills Grid  (CSS Grid)
+ *       18b. Skill Bars  (Flexbox)
+ *       18c. Language Skills  (<dl>)
+ *       18d. Technology Tags
+ *       18e. Soft Skills
+ *       18f. Tux Mascot Decoration
+ *       18g. Skill-group header
+ * 19.  Contact Page
+ * 20.  Footer
+ * 21.  Responsive Breakpoints
+ *       21a. ≥2560px  — 4K / large TV
+ *       21b. ≤1440px  — large desktop
+ *       21c. ≤1100px  — small desktop / tablet landscape
+ *       21d. ≤768px   — tablet portrait / mobile (switch to flex nav)
+ *       21e. ≤480px   — small mobile
+ *       21f. ≤360px   — very small / Nokia-class
+ *       21g. prefers-reduced-motion
+ * ============================================================ */
+
+/* ============================================================
+ * 1. COLOR PALETTE DOCUMENTATION
+ * ============================================================
+ * Three main colors (+ backgrounds, text, which don't count):
+ *
+ * DARK THEME
+ *   --color-primary  : #c084fc  Purple   — headings, active states, borders
+ *   --color-secondary: #67e8f9  Cyan     — code tags, skill bars, metadata
+ *   --color-accent   : #fbbf24  Amber    — highlights, CTAs
+ *
+ * LIGHT THEME  (darkened for WCAG AA contrast on white/cream)
+ *   --color-primary  : #b45309  Amber-700  (4.6:1 on white ✓)
+ *   --color-secondary: #047857  Emerald-700 (5.0:1 on white ✓)
+ *   --color-accent   : #d97706  Amber-600
+ * ============================================================ */
+
+/* ============================================================
+ * 2. CSS CUSTOM PROPERTIES — DARK THEME (default)
+ * ============================================================ */
+:root {
+  /* Main colors */
+  --color-primary: #c084fc;
+  --color-secondary: #67e8f9;
+  --color-accent: #fbbf24;
+
+  /* Backgrounds */
+  --bg-page: #0b1120;
+  --bg-card: #192236;
+  --bg-hover: #2a3a56;
+  --bg-input: #0f1829;
+  --border: #2a3a56;
+  --border-subtle: #1c2d45;
+
+  /* Text */
+  --text-primary: #eef2ff;
+  --text-secondary: #c5d3eb;
+  --text-muted: #7691b0;
+
+  /* Nav with glass effect */
+  --nav-bg: rgba(11, 17, 32, 0.82);
+  --nav-mobile-bg: rgba(11, 17, 32, 0.97);
+  --nav-height: 3.25rem;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    var(--color-secondary),
+    var(--color-accent)
+  );
+
+  /* Glow */
+  --glow-primary: 0 0 22px rgba(192, 132, 252, 0.22);
+
+  /* Spacing */
+  --gap-xs: 0.5rem;
+  --gap-sm: 1rem;
+  --gap-md: 2rem;
+  --gap-lg: 3rem;
+
+  /* Transitions */
+  --t-fast: 0.15s ease;
+  --t-normal: 0.25s ease;
+
+  /* Fonts */
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-code: "Fira Code", monospace;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
 }
 
-:root {
-  /* ---Color palette--- */
-  --primary: #c084fc;
-  --secondary: #a78bfa;
-  --accent: #fbbf24;
-  --cyan: #67e8f9;
-  --purple: #a78bfa;
-  --green: #86efac;
-  --bg-dark: #0f172a;
-  --bg-darker: #020617;
-  --bg-card: #1e293b;
-  --bg-hover: #334155;
-  --border: #334155;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  /* ---Gradients--- */
-  --gradient-1: linear-gradient(
-    135deg,
-    var(--primary) 0%,
-    var(--secondary) 50%,
-    var(--cyan) 100%
-  );
-  --gradient-2: linear-gradient(
-    135deg,
-    var(--cyan) 0%,
-    var(--secondary) 50%,
-    var(--accent) 100%
-  );
-  --gradient-3: linear-gradient(135deg, var(--green) 0%, var(--cyan) 100%);
-  /* ---Shadows--- */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 30px rgba(192, 132, 252, 0.3);
-  /* ---Spacing--- */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 3rem;
-  --spacing-xl: 4rem;
-  /* ---Transitions--- */
-  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  /* ---Fonts--- */
-  --font-heading: "Poppins", sans-serif;
-  --font-primary: "Inter", sans-serif;
-  --font-code: "Fira Code", monospace;
+/* ============================================================
+ * 3. LIGHT THEME OVERRIDES
+ *    Activated when #theme-toggle checkbox is checked.
+ *    Uses :has() — pure CSS, no JavaScript.
+ *    Warm amber+emerald palette on parchment background.
+ * ============================================================ */
+body:has(#theme-toggle:checked) {
+  /* Main colors (high-contrast on light backgrounds) */
+  --color-primary: #b45309; /* amber-700  — 4.6:1 on white */
+  --color-secondary: #047857; /* emerald-700 — 5.0:1 on white */
+  --color-accent: #d97706; /* amber-600 */
+
+  /*
+    Gradients redefined explicitly here.
+    Reason: defining a custom property that contains var() inside
+    another custom property (--gradient-primary uses --color-primary)
+    is not guaranteed to re-evaluate when the depended-upon variable
+    changes in Firefox and older Chromium builds. Listing them
+    literally avoids the issue entirely.
+  */
+  --gradient-primary: linear-gradient(135deg, #b45309, #047857);
+  --gradient-accent: linear-gradient(135deg, #047857, #d97706);
+
+  /* Warm parchment backgrounds */
+  --bg-page: #fdfaf5;
+  --bg-card: #ffffff;
+  --bg-hover: #fef6e8;
+  --bg-input: #ffffff;
+  --border: #e5d5b0;
+  --border-subtle: #f0e5cc;
+
+  /* Warm brown text */
+  --text-primary: #1c0d00;
+  --text-secondary: #4a3010;
+  --text-muted: #8a6020;
+
+  /* Warm nav */
+  --nav-bg: rgba(253, 250, 245, 0.92);
+  --nav-mobile-bg: rgba(253, 250, 245, 0.99);
+
+  /* Lighter shadows for light backgrounds */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.07);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.09);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.11);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.14);
+
+  /* Warm amber glow */
+  --glow-primary: 0 0 22px rgba(180, 83, 9, 0.14);
+}
+
+/* ============================================================
+ * 4. LANGUAGE VISIBILITY SYSTEM
+ *    4 radio inputs (name="lang") control which .lang-XX
+ *    spans are visible. Default (nothing checked) = Spanish.
+ * ============================================================ */
+.lang-es {
+  display: revert;
+}
+.lang-en {
+  display: none;
+}
+.lang-gl {
+  display: none;
+}
+.lang-de {
+  display: none;
+}
+
+body:has(#lang-es:checked) .lang-es {
+  display: revert;
+}
+body:has(#lang-es:checked) .lang-en {
+  display: none;
+}
+body:has(#lang-es:checked) .lang-gl {
+  display: none;
+}
+body:has(#lang-es:checked) .lang-de {
+  display: none;
+}
+
+body:has(#lang-en:checked) .lang-es {
+  display: none;
+}
+body:has(#lang-en:checked) .lang-en {
+  display: revert;
+}
+body:has(#lang-en:checked) .lang-gl {
+  display: none;
+}
+body:has(#lang-en:checked) .lang-de {
+  display: none;
+}
+
+body:has(#lang-gl:checked) .lang-es {
+  display: none;
+}
+body:has(#lang-gl:checked) .lang-en {
+  display: none;
+}
+body:has(#lang-gl:checked) .lang-gl {
+  display: revert;
+}
+body:has(#lang-gl:checked) .lang-de {
+  display: none;
+}
+
+body:has(#lang-de:checked) .lang-es {
+  display: none;
+}
+body:has(#lang-de:checked) .lang-en {
+  display: none;
+}
+body:has(#lang-de:checked) .lang-gl {
+  display: none;
+}
+body:has(#lang-de:checked) .lang-de {
+  display: revert;
+}
+
+/* ============================================================
+ * 5. THEME ICON VISIBILITY
+ *    Sun shown in dark mode (click → go light).
+ *    Moon shown in light mode (click → go dark).
+ * ============================================================ */
+.icon-sun {
+  display: block;
+}
+.icon-moon {
+  display: none;
+}
+
+body:has(#theme-toggle:checked) .icon-sun {
+  display: none;
+}
+body:has(#theme-toggle:checked) .icon-moon {
+  display: block;
+}
+
+/* ============================================================
+ * 6. RESET & BASE
+ * ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  height: 100%;
   scroll-behavior: smooth;
-  font-size: clamp(14px, 1vw + 0.5rem, 18px);
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-  font-family: var(--font-primary);
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
-  min-height: 100vh; /* Ensure full viewport height */
-
-  transition:
-    background-color var(--transition-smooth),
-    color var(--transition-smooth); /* Smooth theme transition */
-}
-
-section {
-  background-color: var(--bg-card);
-  border-radius: 12px;
-  box-shadow: var(--shadow-md);
-  padding: var(--spacing-md);
-  margin-top: clamp(
-    var(--spacing-xs),
-    2vw + var(--spacing-sm),
-    var(--spacing-lg)
-  );
-  transition: background-color var(--transition-smooth);
-}
-
-/* Section: Global Styles */
-h2 {
-  font-size: clamp(1.8rem, 7vw + 1rem, 5rem);
-  color: var(--text-primary);
-  margin-bottom: 1rem;
+  -webkit-text-size-adjust: 100%;
+  /* Fluid font: 13px (Nokia) → 16px (desktop) → 18px (4K) */
+  font-size: clamp(13px, 0.7vw + 0.6rem, 18px);
 }
 
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
-/* icons */
+a {
+  color: var(--color-primary);
+  transition: color var(--t-fast);
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* ============================================================
+ * 7. FOCUS & ACCESSIBILITY
+ * ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================================
+ * 8. BODY — STICKY FOOTER
+ *    body is a flex column; .main-content grows (flex:1)
+ *    to push .main-footer to the bottom of the viewport.
+ *    body::before and .main-header are position:fixed →
+ *    removed from flex flow → don't affect layout.
+ * ============================================================ */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height for mobile browsers */
+
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition:
+    background-color var(--t-normal),
+    color var(--t-normal);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+ * 9. BACKGROUND DECORATIVE GRADIENT
+ *    Subtle radial blobs for depth — position:fixed so they
+ *    cover the entire viewport regardless of scroll / content.
+ * ============================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 75% 55% at 8% 8%,
+      rgba(192, 132, 252, 0.07) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 92% 92%,
+      rgba(103, 232, 249, 0.05) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 40% 40% at 50% 50%,
+      rgba(251, 191, 36, 0.02) 0%,
+      transparent 60%
+    );
+}
+
+body:has(#theme-toggle:checked)::before {
+  background:
+    radial-gradient(
+      ellipse 75% 55% at 8% 8%,
+      rgba(180, 83, 9, 0.07) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 92% 92%,
+      rgba(4, 120, 87, 0.05) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 40% 40% at 50% 50%,
+      rgba(253, 186, 0, 0.03) 0%,
+      transparent 60%
+    );
+}
+
+/* ============================================================
+ * 10. TYPOGRAPHY
+ * ============================================================ */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(1.7rem, 3.5vw + 0.4rem, 3rem);
+  margin-bottom: var(--gap-sm);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.15rem, 2vw + 0.3rem, 1.8rem);
+  margin-bottom: var(--gap-sm);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(0.68rem, 0.9vw + 0.3rem, 0.82rem);
+  font-family: var(--font-code);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--gap-xs);
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: var(--gap-sm);
+  max-width: 66ch;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+ * 11. SVG ICONS — BEM MODIFIER PATTERN
+ *   .icon           stroke-based (default for most icons)
+ *   .icon.icon--solid  fill-based (GitHub, Tux, etc.)
+ * ============================================================ */
 .icon {
-  width: 20px;
-  height: 20px;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  vertical-align: middle;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -133,154 +459,1209 @@ img {
   stroke-linejoin: round;
 }
 
-.nav-menu {
-  display: flex;
-  gap: clamp(0.5rem, 7vw + 1rem, 5rem);
-  font-size: clamp(1rem, 1vw + 0.5rem, 3rem);
-  align-items: center;
+.icon.icon--solid {
+  fill: currentColor;
+  stroke: none;
 }
 
-.nav-menu a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: var(--text-primary);
-  font-weight: 500;
-  transition: color var(--transition-fast);
+/* ============================================================
+ * 12. MAIN LAYOUT
+ * ============================================================ */
+.main-content {
+  flex: 1; /* grows to push footer down (sticky footer) */
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 2rem) clamp(1rem, 4vw, 2.5rem) var(--gap-lg);
 }
 
-.nav-menu a:hover {
-  color: var(--primary);
+/*
+  Sections that are NOT .card (e.g. quicklinks section on index)
+  still need a bottom gap so they don't collapse against the next card.
+  .card already sets its own margin-bottom.
+*/
+.main-content > section:not(.card) {
+  margin-bottom: var(--gap-md);
 }
 
-.nav-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-weight: 700;
-  transition: all var(--transition-fast);
-  position: relative;
+/* ============================================================
+ * 13. CARDS
+ * ============================================================ */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
+  padding: var(--gap-md);
+  margin-bottom: var(--gap-md);
+  transition:
+    background-color var(--t-normal),
+    border-color var(--t-fast),
+    box-shadow var(--t-fast);
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 45%, var(--border));
+  box-shadow: var(--shadow-sm), var(--glow-primary);
 }
 
-.nav-brand {
-  display: flex;
-  align-items: center;
-  font-size: clamp(1rem, 1vw + 0.5rem, 5rem);
+/* Gradient accent bar under first heading inside a card */
+.card h1::after,
+.card > h2::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-top: 0.45rem;
+  background: var(--gradient-primary);
+  border-radius: 2px;
 }
-/* ---header--- */
+
+/* ============================================================
+ * 14. HEADER & NAVIGATION
+ * ============================================================ */
 .main-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(10, 14, 39, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  height: var(--nav-height);
+  background: var(--nav-bg);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
   z-index: 1000;
-  transition: all var(--transition);
+  transition:
+    background-color var(--t-normal),
+    border-color var(--t-normal);
 }
-/* brand logo symbol*/
+
+/* ── 14a. CSS Grid 3-column: [brand] [nav-menu (centered)] [controls] ── */
+.main-nav {
+  display: grid;
+  /* minmax(0,1fr) ensures equal columns regardless of content width */
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2.5rem);
+  gap: var(--gap-xs);
+}
+
+/* Hidden checkbox: position:absolute → removed from grid flow */
+.menu-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* ── 14b. Brand / Logo (grid col 1, left-aligned) ── */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  white-space: nowrap;
+  justify-self: start;
+}
+
 .logo-bracket {
-  color: var(--purple);
+  color: var(--color-primary);
 }
-/* brand logo text */
+
 .logo-text {
-  background: var(--gradient-1);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-/* ---main navigation bar--- */
-.main-nav {
+
+/* ── 14c. Nav Menu (grid col 2, auto-centered) ── */
+.nav-menu {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: clamp(0.2rem, 0.5vw + 0.2rem, 2rem);
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: clamp(0.25rem, 1.8vw, 1.5rem);
+  list-style: none;
+  justify-self: center;
 }
-/* ---nav separator--- */
-.main-content {
-  margin-top: clamp(1rem, 5vw + 1rem, 4rem);
-  padding: 20px;
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: clamp(0.72rem, 0.85vw + 0.2rem, 0.88rem);
+  white-space: nowrap;
+  transition: color var(--t-fast);
+  position: relative;
+  padding-bottom: 2px;
 }
-/* hide menu-checkbox */
-.menu-checkbox {
-  display: none;
+
+.nav-link:hover {
+  color: var(--color-primary);
 }
-/* Hide hamburger on desktop */
-.menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  color: var(--text-primary);
+
+/* ── 14d. Active page indicator ── */
+.nav-link.active,
+.nav-link[aria-current="page"] {
+  color: var(--color-primary);
 }
-/* ---footer--- */
-.main-footer {
-  /* min-height: 100vh;
+
+.nav-link.active::after,
+.nav-link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+/* ── 14e. Nav Controls group (grid col 3, right-aligned) ── */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  justify-self: end;
+  flex-shrink: 0;
+}
+
+/* ── 14f. Theme Toggle ── */
+.theme-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.28rem;
+  transition:
+    color var(--t-fast),
+    border-color var(--t-fast),
+    background-color var(--t-fast);
+}
+
+.theme-toggle-label:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/* ── 14g. Language Dropdown ──
+   Opens on :hover and stays open while a child has focus (:focus-within).
+   No JS required — hover/focus-within handles open/close.
+── */
+.lang-dropdown {
+  position: relative;
+}
+
+.lang-dropdown__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.28rem 0.45rem;
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  line-height: 1;
+  transition:
+    color var(--t-fast),
+    border-color var(--t-fast),
+    background-color var(--t-fast);
+}
+
+.lang-dropdown__trigger:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.lang-chevron {
+  width: 0.65rem;
+  height: 0.65rem;
+  transition: transform var(--t-fast);
+}
+
+.lang-dropdown:hover .lang-chevron,
+.lang-dropdown:focus-within .lang-chevron {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  min-width: 148px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 0.3rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; */
+  gap: 2px;
+  z-index: 200;
+
+  /* Hidden state */
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition:
+    visibility 0s 0.16s,
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.lang-dropdown:hover .lang-dropdown__menu,
+.lang-dropdown:focus-within .lang-dropdown__menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.lang-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.lang-dropdown__menu label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  transition:
+    background-color var(--t-fast),
+    color var(--t-fast);
+  user-select: none;
+}
+
+.lang-dropdown__menu label:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.lang-code {
+  font-family: var(--font-code);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.08rem 0.32rem;
+  border-radius: 3px;
+  background: var(--bg-hover);
+  color: var(--color-secondary);
+  min-width: 1.8rem;
   text-align: center;
-  padding: var(--spacing-md);
-  background-color: var(--bg-card);
+}
+
+.check-icon {
+  width: 0.82rem;
+  height: 0.82rem;
+  margin-left: auto;
+  color: var(--color-primary);
+  opacity: 0;
+  flex-shrink: 0;
+}
+
+/* Active language option */
+body:has(#lang-es:checked) label[for="lang-es"],
+body:has(#lang-en:checked) label[for="lang-en"],
+body:has(#lang-gl:checked) label[for="lang-gl"],
+body:has(#lang-de:checked) label[for="lang-de"] {
+  background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+}
+
+body:has(#lang-es:checked) label[for="lang-es"] .check-icon,
+body:has(#lang-en:checked) label[for="lang-en"] .check-icon,
+body:has(#lang-gl:checked) label[for="lang-gl"] .check-icon,
+body:has(#lang-de:checked) label[for="lang-de"] .check-icon {
+  opacity: 1;
+}
+
+/* ── 14h. Hamburger — LAST inside .nav-controls = always rightmost ── */
+.menu-toggle {
+  display: none; /* hidden on desktop */
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.28rem;
+  transition:
+    color var(--t-fast),
+    border-color var(--t-fast);
+}
+
+.menu-toggle:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ============================================================
+ * 15. INDEX PAGE
+ * ============================================================ */
+
+/* ── 15a. Hero Section — Flexbox (course requirement) ── */
+.hero-section {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -3%;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--color-primary) 10%, transparent) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.hero-avatar {
+  flex-shrink: 0;
+}
+
+.hero-avatar img {
+  width: clamp(80px, 12vw, 148px);
+  height: clamp(80px, 12vw, 148px);
+  object-fit: cover;
+  border-radius: 50%;
+  /* Gradient border trick without extra element */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    var(--gradient-primary) border-box;
+  box-shadow: var(--shadow-sm), var(--glow-primary);
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-text h1 {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.15rem;
+}
+
+/* Don't show the card accent line under hero h1 */
+.hero-section h1::after {
+  display: none;
+}
+
+.hero-subtitle {
+  font-family: var(--font-code);
   color: var(--text-muted);
+  font-size: clamp(0.7rem, 1vw + 0.2rem, 0.88rem);
+  margin: 0 0 var(--gap-sm);
+  max-width: none;
+}
+
+/* ── 15b. Quick-Links Grid — CSS Grid 2×2 (course requirement) ── */
+.quicklinks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* always 2 equal columns */
+  gap: var(--gap-sm);
+  margin-top: var(--gap-sm);
+}
+
+.quicklink-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--gap-sm) 1.1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  height: 100%; /* equal height within grid row */
+  transition:
+    border-color var(--t-fast),
+    box-shadow var(--t-fast),
+    transform var(--t-fast),
+    background-color var(--t-fast);
+}
+
+.quicklink-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm), var(--glow-primary);
+  transform: translateY(-3px);
+  color: var(--text-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 5%, var(--bg-card));
+}
+
+.quicklink-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--bg-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: background-color var(--t-fast);
+}
+
+.quicklink-card:hover .quicklink-icon {
+  background-color: color-mix(
+    in srgb,
+    var(--color-primary) 22%,
+    var(--bg-hover)
+  );
+}
+
+.quicklink-card h3 {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-primary);
+  margin-bottom: 0.1rem;
+}
+
+.quicklink-card p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.3;
+  max-width: none;
+}
+
+/* ── 15c. Blockquote ── */
+blockquote {
+  border-left: 3px solid var(--color-primary);
+  margin: var(--gap-md) 0 0;
+  padding: 0.4rem var(--gap-sm);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+blockquote footer {
+  font-size: 0.82em;
+  margin-top: 0.2rem;
+}
+
+/* ── 15d. Interests Grid ── */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--gap-sm);
+  margin-top: var(--gap-xs);
+}
+
+.interest-item {
+  background: var(--bg-hover);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--gap-sm);
+  transition: border-color var(--t-fast);
+}
+
+.interest-item:hover {
+  border-color: var(--color-primary);
+}
+
+.interest-item h3 {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.interest-item p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  max-width: none;
+}
+
+/* ============================================================
+ * 16. CV ENTRIES  (experience / education)
+ *     auto-fit → last row fills full width (no orphan gap)
+ * ============================================================ */
+.entries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: var(--gap-sm);
+  align-items: stretch; /* equal height per row */
+}
+
+.cv-entry {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--gap-sm);
+  height: 100%;
+  transition:
+    border-color var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+.cv-entry:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-xs), var(--glow-primary);
+}
+
+.cv-entry__title {
+  font-family: var(--font-heading);
+  font-size: clamp(0.9rem, 1.4vw, 1.08rem);
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+
+.cv-entry__meta {
+  font-family: var(--font-code);
+  font-size: 0.76rem;
+  color: var(--color-secondary);
+  margin-bottom: var(--gap-xs);
+}
+
+.cv-entry__desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: none;
+  flex: 1;
+}
+
+.cv-entry__list {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding-left: 1.1rem;
+  margin: var(--gap-xs) 0 0;
+  flex: 1;
+}
+
+.cv-entry__list li {
+  margin-bottom: 0.25rem;
+}
+
+.cv-entry__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  margin-top: auto;
+  padding-top: var(--gap-xs);
+  list-style: none;
+}
+
+.cv-entry__tags li {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  color: var(--color-secondary);
+  background: color-mix(in srgb, var(--color-secondary) 10%, var(--bg-hover));
+  border: 1px solid
+    color-mix(in srgb, var(--color-secondary) 28%, var(--border));
+  border-radius: var(--radius-sm);
+  padding: 0.1rem 0.42rem;
+}
+
+/* ============================================================
+ * 17. EDUCATION GRID
+ *     2 columns: formal / complementary training
+ * ============================================================ */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap-md);
+  align-items: start;
+}
+
+/* ============================================================
+ * 18. SKILLS PAGE
+ * ============================================================ */
+
+/* ── 18a. Skills Grid — CSS Grid (course requirement) ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--gap-sm);
+  align-items: stretch;
+}
+
+.skill-group {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--gap-sm);
+  height: 100%;
+  transition:
+    border-color var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+.skill-group:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 35%, var(--border));
+}
+
+/* ── 18b. Skill Bars — Flexbox (course requirement) ── */
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  list-style: none;
+  flex: 1;
+}
+
+.skill-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xs);
+}
+
+.skill-bar__name {
+  width: 6.2rem;
+  font-size: 0.76rem;
+  font-family: var(--font-code);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.skill-bar__track {
+  flex: 1;
+  height: 5px;
+  background: var(--bg-hover);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-bar__fill {
+  height: 100%;
+  width: var(--pct, 0%); /* set inline: style="--pct:85%" */
+  background: var(--gradient-primary);
+  border-radius: 99px;
+}
+
+.skill-bar__pct {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  width: 2.1rem;
+  text-align: right;
+}
+
+/* ── 18c. Language Skills — definition list ── */
+.lang-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--gap-xs);
+}
+
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem var(--gap-sm);
+  height: 100%;
+}
+
+.lang-item dt {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  margin-bottom: 0.12rem;
+}
+
+.lang-item dd {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+}
+
+/* ── 18d. Technology Tags ── */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  list-style: none;
+}
+
+.tag-list li {
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  background: color-mix(in srgb, var(--color-secondary) 10%, var(--bg-hover));
+  border: 1px solid
+    color-mix(in srgb, var(--color-secondary) 28%, var(--border));
+  border-radius: var(--radius-sm);
+  padding: 0.17rem 0.48rem;
+}
+
+/* ── 18e. Soft Skills ── */
+.soft-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: 1;
+}
+
+.soft-list li {
+  padding-left: 1.1rem;
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.soft-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+}
+
+/* ── 18f. Tux Mascot Decoration ──
+   Placed in the "OS & Systems" skill-group header.
+   Faded by default, brightens on hover.
+── */
+.skill-group__mascot {
+  width: 2rem;
+  height: 2rem;
+  color: var(--text-muted);
+  opacity: 0.35;
+  flex-shrink: 0;
+  transition:
+    opacity var(--t-normal),
+    color var(--t-fast);
+}
+
+.skill-group:hover .skill-group__mascot {
+  opacity: 0.85;
+  color: var(--color-primary);
+}
+
+/* ── 18g. Skill-group header row ──
+   Flex row: h3 grows, optional mascot icon on the right.
+── */
+.skill-group__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: var(--gap-xs);
+}
+
+.skill-group__header h3 {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+ * 19. CONTACT PAGE
+ *     Grid 2 col: info + form (course requirement)
+ * ============================================================ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--gap-md);
+  align-items: start;
+  margin-top: var(--gap-sm);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-style: normal; /* <address> is italic by default */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.52rem var(--gap-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition:
+    color var(--t-fast),
+    border-color var(--t-fast);
+}
+
+.contact-item:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  letter-spacing: 0.03em;
+}
+
+.form-group input,
+.form-group textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.58rem 0.85rem;
+  transition:
+    border-color var(--t-fast),
+    box-shadow var(--t-fast);
+  resize: vertical;
+  width: 100%;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+.form-group textarea {
+  min-height: 118px;
+}
+
+.btn-submit {
+  align-self: flex-start;
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.58rem 1.45rem;
+  transition:
+    opacity var(--t-fast),
+    transform var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============================================================
+ * 20. FOOTER
+ *     Anchored to bottom via body's flex layout (section 8).
+ * ============================================================ */
+.main-footer {
+  flex-shrink: 0; /* never shrinks; body flex pushes it down */
+  text-align: center;
+  padding: var(--gap-md);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  transition: background-color var(--t-normal);
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xs);
 }
-/* ---mobile--- */
-@media (max-width: 820px) {
+
+.footer-links {
+  display: flex;
+  gap: var(--gap-md);
+  flex-wrap: wrap;
+  justify-content: center;
+  font-style: normal;
+}
+
+.footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  transition: color var(--t-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-primary);
+}
+
+/* ============================================================
+ * 21. RESPONSIVE BREAKPOINTS
+ * ============================================================ */
+
+/* ── 21a. ≥2560px — 4K / large TV ── */
+@media (min-width: 2560px) {
+  html {
+    font-size: clamp(16px, 0.7vw, 20px);
+  }
+
+  .main-content,
+  .footer-container {
+    max-width: 1440px;
+  }
+
+  .main-nav {
+    max-width: 1920px;
+  }
+}
+
+/* ── 21b. ≤1440px — large desktop ── */
+@media (max-width: 1440px) {
+  .main-nav {
+    padding: 0 clamp(1rem, 2.5vw, 2rem);
+  }
+}
+
+/* ── 21c. ≤1100px — small desktop / tablet landscape ── */
+@media (max-width: 1100px) {
+  .nav-menu {
+    gap: clamp(0.2rem, 1.2vw, 1rem);
+  }
+}
+
+/* ── 21d. ≤768px — tablet portrait / mobile ── */
+@media (max-width: 768px) {
+  /* Switch nav from Grid → Flex (nav-menu becomes absolute) */
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  /* Show hamburger button */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Nav menu: absolute slide-down panel */
   .nav-menu {
     position: absolute;
-    top: 100%;
+    top: var(--nav-height);
     left: 0;
     width: 100%;
-
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
-
-    /* Styling */
-    background: rgba(10, 14, 39, 0.95);
-    backdrop-filter: blur(20px);
+    gap: 0;
+    background: var(--nav-mobile-bg);
     border-bottom: 1px solid var(--border);
-
-    /* Slide animation */
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    justify-self: unset;
+    /* Slide-down animation */
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    padding: 0 2rem;
-    transition: all var(--transition-smooth);
+    transition:
+      max-height var(--t-normal),
+      opacity var(--t-normal);
   }
 
-  /* TODO: highlight */
-  .nav-menu a:hover {
-    color: var(--primary);
+  .nav-menu li {
+    width: 100%;
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  /* Show hamburger on mobile */
-  .menu-toggle {
-    display: block;
-    cursor: pointer;
+  .nav-menu li:last-child {
+    border-bottom: none;
   }
 
-  /* WHEN TOGGLED: Expand the menu */
+  .nav-link {
+    padding: 0.75rem 1.25rem;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  /* Open when checkbox is checked */
   .menu-checkbox:checked ~ .nav-menu {
-    max-height: 400px;
+    max-height: 520px;
     opacity: 1;
-    padding: 2rem;
-    box-shadow: var(--shadow-lg);
+  }
+
+  /* Language dropdown: open leftward on mobile */
+  .lang-dropdown__menu {
+    right: auto;
+    left: 0;
+  }
+
+  /* Hero stacks vertically */
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-section p {
+    max-width: none;
+  }
+
+  /* All multi-column grids → 1 column */
+  .quicklinks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  } /* keep 2-col on tablet */
+  .entries-grid,
+  .edu-grid,
+  .skills-grid,
+  .interests-grid,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── 21e. ≤480px — small mobile ── */
+@media (max-width: 480px) {
+  .main-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .card {
+    padding: var(--gap-sm) 0.875rem;
+  }
+
+  /* On very small phones, even quick-links → 1 column */
+  .quicklinks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-bar__name {
+    width: 5rem;
+  }
+
+  .btn-submit {
+    width: 100%;
+    text-align: center;
+    align-self: stretch;
+  }
+
+  .footer-links {
+    gap: var(--gap-sm);
+  }
+
+  /* Nav controls: tighter spacing */
+  .nav-controls {
+    gap: 0.3rem;
+  }
+}
+
+/* ── 21f. ≤360px — very small / Nokia-class ── */
+@media (max-width: 360px) {
+  html {
+    font-size: 13px;
+  }
+
+  .nav-brand {
+    font-size: 0.82rem;
+  }
+
+  .hero-avatar img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+
+  /* Show only icon in theme/lang controls to save space */
+  .lang-dropdown__trigger .lang-es,
+  .lang-dropdown__trigger .lang-en,
+  .lang-dropdown__trigger .lang-gl,
+  .lang-dropdown__trigger .lang-de,
+  .lang-chevron {
+    display: none;
+  }
+}
+
+/* ── 21g. prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

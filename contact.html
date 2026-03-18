@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -7,63 +7,324 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Home</title>
+    <meta
+      name="description"
+      content="Contacto — Manuel Felipe Millán Peláez."
+    />
+    <title>Felipe Millán | Contacto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap"
+    />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>Felipe Millán</h1>
-      <p>Software Developer</p>
+    <header class="main-header">
+      <nav class="main-nav" aria-label="Main navigation">
+        <!-- Brand: grid col 1 (left-aligned) -->
+        <a
+          href="index.html"
+          class="nav-brand"
+          aria-label="Felipe Millán — Homepage"
+        >
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">millaez</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <!--
+          Hidden checkbox: position:absolute removes it from grid flow.
+          Must be before .nav-menu in DOM for: .menu-checkbox:checked ~ .nav-menu
+        -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+
+        <!-- Nav links: grid col 2 (centered on desktop, absolute dropdown on mobile) -->
+        <ul class="nav-menu" role="list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#home-icon" />
+              </svg>
+              <span class="lang-es">Inicio</span
+              ><span class="lang-en">Home</span
+              ><span class="lang-gl">Inicio</span
+              ><span class="lang-de">Startseite</span>
+            </a>
+          </li>
+          <li>
+            <a href="experience.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#experience-icon" />
+              </svg>
+              <span class="lang-es">Experiencia</span
+              ><span class="lang-en">Experience</span
+              ><span class="lang-gl">Experiencia</span
+              ><span class="lang-de">Erfahrung</span>
+            </a>
+          </li>
+          <li>
+            <a href="education.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#education-icon" />
+              </svg>
+              <span class="lang-es">Formación</span
+              ><span class="lang-en">Education</span
+              ><span class="lang-gl">Formación</span
+              ><span class="lang-de">Ausbildung</span>
+            </a>
+          </li>
+          <li>
+            <a href="skills.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#skills-icon" />
+              </svg>
+              <span class="lang-es">Competencias</span
+              ><span class="lang-en">Skills</span
+              ><span class="lang-gl">Competencias</span
+              ><span class="lang-de">Kompetenzen</span>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="nav-link active" aria-current="page">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#contact-icon" />
+              </svg>
+              <span class="lang-es">Contacto</span
+              ><span class="lang-en">Contact</span
+              ><span class="lang-gl">Contacto</span
+              ><span class="lang-de">Kontakt</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Nav controls: grid col 3 (right-aligned). Hamburger LAST = rightmost. -->
+        <div class="nav-controls">
+          <!-- Theme toggle: hidden checkbox + visible label (no JS) -->
+          <input type="checkbox" id="theme-toggle" class="theme-checkbox" />
+          <label
+            for="theme-toggle"
+            class="theme-toggle-label"
+            aria-label="Toggle light/dark theme"
+          >
+            <svg class="icon icon-sun" aria-hidden="true">
+              <use href="assets/icons/icons.svg#sun-icon" />
+            </svg>
+            <svg class="icon icon-moon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#moon-icon" />
+            </svg>
+          </label>
+
+          <!--
+            Language dropdown: opens on :hover / :focus-within — no JS.
+            4 radio inputs (name="lang") store the selected language.
+            CSS :has() reads their state to show/hide .lang-xx spans everywhere.
+          -->
+          <div
+            class="lang-dropdown"
+            role="group"
+            aria-label="Language / Idioma"
+          >
+            <button
+              class="lang-dropdown__trigger"
+              type="button"
+              aria-haspopup="listbox"
+            >
+              <svg
+                class="icon"
+                aria-hidden="true"
+                style="width: 0.85rem; height: 0.85rem"
+              >
+                <use href="assets/icons/icons.svg#globe-icon" />
+              </svg>
+              <span class="lang-es">ES</span>
+              <span class="lang-en">EN</span>
+              <span class="lang-gl">GL</span>
+              <span class="lang-de">DE</span>
+              <svg class="icon lang-chevron" aria-hidden="true">
+                <use href="assets/icons/icons.svg#chevron-down-icon" />
+              </svg>
+            </button>
+
+            <div class="lang-dropdown__menu" role="listbox">
+              <input type="radio" name="lang" id="lang-es" class="lang-radio" />
+              <label for="lang-es" role="option">
+                <span class="lang-code">ES</span>Español
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-en" class="lang-radio" />
+              <label for="lang-en" role="option">
+                <span class="lang-code">EN</span>English
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-gl" class="lang-radio" />
+              <label for="lang-gl" role="option">
+                <span class="lang-code">GL</span>Galego
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-de" class="lang-radio" />
+              <label for="lang-de" role="option">
+                <span class="lang-code">DE</span>Deutsch
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <!-- Hamburger: LAST in .nav-controls → always rightmost -->
+          <label
+            for="menu-toggle"
+            class="menu-toggle"
+            aria-label="Toggle navigation menu"
+          >
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#menu-icon" />
+            </svg>
+          </label>
+        </div>
+      </nav>
     </header>
 
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="skills.html">Skills</a></li>
-      </ul>
-    </nav>
+    <main class="main-content" id="main-content">
+      <section class="card" aria-labelledby="contact-heading">
+        <h1 id="contact-heading">
+          <span class="lang-es">Contacto</span
+          ><span class="lang-en">Contact</span
+          ><span class="lang-gl">Contacto</span
+          ><span class="lang-de">Kontakt</span>
+        </h1>
+        <p>
+          <span class="lang-es"
+            >No dudes en contactarme — siempre estoy abierto a nuevas
+            oportunidades y conversaciones.</span
+          ><span class="lang-en"
+            >Feel free to reach out — I'm always open to new opportunities and
+            conversations.</span
+          ><span class="lang-gl"
+            >Non dubides en contactar — estou sempre aberto a novas
+            oportunidades e conversas.</span
+          ><span class="lang-de"
+            >Zögere nicht, mich zu kontaktieren — ich bin immer offen für neue
+            Möglichkeiten und Gespräche.</span
+          >
+        </p>
 
-    <main>
-      <section>
-        <div>
-          <img src="img/frog_wizard.gif" alt="my-image" />
-        </div>
-      </section>
+        <!-- Grid 2 columns: contact info + form (course requirement) -->
+        <div class="contact-layout">
+          <!-- <address> is the semantic element for contact information of the page owner -->
+          <address class="contact-info">
+            <a href="mailto:millaez@outlook.com" class="contact-item">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#contact-icon" />
+              </svg>
+              millaez@outlook.com
+            </a>
+            <a
+              href="https://github.com/mmillanpelaez-bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-item"
+            >
+              <svg class="icon icon--solid" aria-hidden="true">
+                <use href="assets/icons/icons.svg#github-icon" />
+              </svg>
+              mmillanpelaez-bot
+            </a>
+            <span class="contact-item">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#globe-icon" />
+              </svg>
+              Vigo, Galicia, <span class="lang-es">España</span
+              ><span class="lang-en">Spain</span
+              ><span class="lang-gl">España</span
+              ><span class="lang-de">Spanien</span>
+            </span>
+          </address>
 
-      <section>
-        <div>
-          <h2>Welcome to my CV!</h2>
-        </div>
-
-        <div>
-          <p>
-            I'm Felipe, an observant and adaptable professional with a constant
-            interest in learning. Having lived in diverse international
-            environments (notably Germany) reinforced strong adaptability,
-            autonomy, and real-world problem-solving skills. I have an affinity
-            for technology, enjoy tackling new challenges, and value the balance
-            between individual work and team collaboration. Currently seeking an
-            environment for continued professional growth.
-          </p>
-        </div>
-
-        <div>
-          <p><q>Sapere aude</q></p>
+          <!-- Contact form (layout mock-up — no backend) -->
+          <form class="contact-form" action="#" method="post" novalidate>
+            <div class="form-group">
+              <label for="contact-name"
+                ><span class="lang-es">Nombre</span
+                ><span class="lang-en">Name</span
+                ><span class="lang-gl">Nome</span
+                ><span class="lang-de">Name</span></label
+              >
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                autocomplete="name"
+                placeholder="Felipe Millán"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                autocomplete="email"
+                placeholder="tu@email.com"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact-message"
+                ><span class="lang-es">Mensaje</span
+                ><span class="lang-en">Message</span
+                ><span class="lang-gl">Mensaxe</span
+                ><span class="lang-de">Nachricht</span></label
+              >
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                placeholder="..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <span class="lang-es">Enviar mensaje</span
+              ><span class="lang-en">Send message</span
+              ><span class="lang-gl">Enviar mensaxe</span
+              ><span class="lang-de">Nachricht senden</span>
+            </button>
+          </form>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div>
-        E-mail:
-        <a href="mailto:millaez@outlook.com">millaez@outlook.com</a>
-      </div>
-
-      <div>
-        Github:
-        <a href="https://github.com/mmillanpelaez-bot">mmillanpelaez-bot</a>
+    <footer class="main-footer">
+      <div class="footer-container">
+        <address class="footer-links">
+          <a href="mailto:millaez@outlook.com">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#contact-icon" />
+            </svg>
+            millaez@outlook.com
+          </a>
+          <a
+            href="https://github.com/mmillanpelaez-bot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg class="icon icon--solid" aria-hidden="true">
+              <use href="assets/icons/icons.svg#github-icon" />
+            </svg>
+            mmillanpelaez-bot
+          </a>
+        </address>
+        <small
+          >&copy; <time datetime="2026">2026</time> Manuel Felipe Millán
+          Peláez</small
+        >
       </div>
     </footer>
   </body>

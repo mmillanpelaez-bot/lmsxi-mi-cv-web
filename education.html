@@ -1,62 +1,366 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Education</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Felipe Millán — Formación académica." />
+    <title>Felipe Millán | Formación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap"
+    />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>Felipe Millán</h1>
-      <p>Software Developer</p>
+    <header class="main-header">
+      <nav class="main-nav" aria-label="Main navigation">
+        <!-- Brand: grid col 1 (left-aligned) -->
+        <a
+          href="index.html"
+          class="nav-brand"
+          aria-label="Manuel Felipe Millán — Homepage"
+        >
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">millaez</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <!--
+          Hidden checkbox: position:absolute removes it from grid flow.
+          Must be before .nav-menu in DOM for: .menu-checkbox:checked ~ .nav-menu
+        -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+
+        <!-- Nav links: grid col 2 (centered on desktop, absolute dropdown on mobile) -->
+        <ul class="nav-menu" role="list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#home-icon" />
+              </svg>
+              <span class="lang-es">Inicio</span
+              ><span class="lang-en">Home</span
+              ><span class="lang-gl">Inicio</span
+              ><span class="lang-de">Startseite</span>
+            </a>
+          </li>
+          <li>
+            <a href="experience.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#experience-icon" />
+              </svg>
+              <span class="lang-es">Experiencia</span
+              ><span class="lang-en">Experience</span
+              ><span class="lang-gl">Experiencia</span
+              ><span class="lang-de">Erfahrung</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="education.html"
+              class="nav-link active"
+              aria-current="page"
+            >
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#education-icon" />
+              </svg>
+              <span class="lang-es">Formación</span
+              ><span class="lang-en">Education</span
+              ><span class="lang-gl">Formación</span
+              ><span class="lang-de">Ausbildung</span>
+            </a>
+          </li>
+          <li>
+            <a href="skills.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#skills-icon" />
+              </svg>
+              <span class="lang-es">Competencias</span
+              ><span class="lang-en">Skills</span
+              ><span class="lang-gl">Competencias</span
+              ><span class="lang-de">Kompetenzen</span>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#contact-icon" />
+              </svg>
+              <span class="lang-es">Contacto</span
+              ><span class="lang-en">Contact</span
+              ><span class="lang-gl">Contacto</span
+              ><span class="lang-de">Kontakt</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Nav controls: grid col 3 (right-aligned). Hamburger LAST = rightmost. -->
+        <div class="nav-controls">
+          <!-- Theme toggle: hidden checkbox + visible label (no JS) -->
+          <input type="checkbox" id="theme-toggle" class="theme-checkbox" />
+          <label
+            for="theme-toggle"
+            class="theme-toggle-label"
+            aria-label="Toggle light/dark theme"
+          >
+            <svg class="icon icon-sun" aria-hidden="true">
+              <use href="assets/icons/icons.svg#sun-icon" />
+            </svg>
+            <svg class="icon icon-moon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#moon-icon" />
+            </svg>
+          </label>
+
+          <!--
+            Language dropdown: opens on :hover / :focus-within — no JS.
+            4 radio inputs (name="lang") store the selected language.
+            CSS :has() reads their state to show/hide .lang-xx spans everywhere.
+          -->
+          <div
+            class="lang-dropdown"
+            role="group"
+            aria-label="Language / Idioma"
+          >
+            <button
+              class="lang-dropdown__trigger"
+              type="button"
+              aria-haspopup="listbox"
+            >
+              <svg
+                class="icon"
+                aria-hidden="true"
+                style="width: 0.85rem; height: 0.85rem"
+              >
+                <use href="assets/icons/icons.svg#globe-icon" />
+              </svg>
+              <span class="lang-es">ES</span>
+              <span class="lang-en">EN</span>
+              <span class="lang-gl">GL</span>
+              <span class="lang-de">DE</span>
+              <svg class="icon lang-chevron" aria-hidden="true">
+                <use href="assets/icons/icons.svg#chevron-down-icon" />
+              </svg>
+            </button>
+
+            <div class="lang-dropdown__menu" role="listbox">
+              <input type="radio" name="lang" id="lang-es" class="lang-radio" />
+              <label for="lang-es" role="option">
+                <span class="lang-code">ES</span>Español
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-en" class="lang-radio" />
+              <label for="lang-en" role="option">
+                <span class="lang-code">EN</span>English
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-gl" class="lang-radio" />
+              <label for="lang-gl" role="option">
+                <span class="lang-code">GL</span>Galego
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-de" class="lang-radio" />
+              <label for="lang-de" role="option">
+                <span class="lang-code">DE</span>Deutsch
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <!-- Hamburger: LAST in .nav-controls → always rightmost -->
+          <label
+            for="menu-toggle"
+            class="menu-toggle"
+            aria-label="Toggle navigation menu"
+          >
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#menu-icon" />
+            </svg>
+          </label>
+        </div>
+      </nav>
     </header>
 
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="skills.html">Skills</a></li>
-      </ul>
-    </nav>
+    <main class="main-content" id="main-content">
+      <section class="card" aria-labelledby="edu-heading">
+        <h1 id="edu-heading">
+          <span class="lang-es">Formación Académica</span
+          ><span class="lang-en">Academic Education</span
+          ><span class="lang-gl">Formación Académica</span
+          ><span class="lang-de">Akademische Ausbildung</span>
+        </h1>
 
-    <main>
-      <section>
-        <div>
-          <img src="img/frog_wizard.gif" alt="my-image" />
-        </div>
-      </section>
+        <!-- Grid 2 columns: formal / complementary training (course requirement) -->
+        <div class="edu-grid">
+          <div>
+            <h2>
+              <span class="lang-es">Formación Reglada</span
+              ><span class="lang-en">Formal Education</span
+              ><span class="lang-gl">Formación Regrada</span
+              ><span class="lang-de">Formale Ausbildung</span>
+            </h2>
 
-      <section>
-        <div>
-          <h2>Education & Training</h2>
-          <p>
-            09/2025 - Current HND in Multiplatform Application Development, CCFP
-            Daniel Castelao, Vigo, Spain, Level in EQF 5
-          </p>
-          <p>
-            09/2024 - 05/2025 High School Diploma (Social Sciences Focus), IES
-            Castelao, Vigo, Spain, Level in EQF 4
-          </p>
-          <p>
-            09/2016 - 05/2019 High School, Dr. Theo-Schöller-Mittelschule,
-            Nuremberg, Germany, Level in EQF 3
-          </p>
-          <p>09/2006 - 07/2015 School, Spain and Colombia, Level in EQF 1-3</p>
+            <article class="cv-entry" aria-labelledby="edu-1">
+              <h2 id="edu-1" class="cv-entry__title">
+                <span class="lang-es"
+                  ><abbr title="Ciclo Formativo de Grado Superior">CFGS</abbr>
+                  Técnico Superior en Desarrollo de Aplicaciones
+                  Multiplataforma</span
+                >
+                <span class="lang-en"
+                  ><abbr title="Higher National Diploma">HND</abbr> in
+                  Multiplatform Application Development</span
+                >
+                <span class="lang-gl"
+                  ><abbr title="Ciclo Formativo de Grao Superior">CFGS</abbr>
+                  Técnico Superior en Desenvolvemento de Aplicacións
+                  Multiplataforma</span
+                >
+                <span class="lang-de"
+                  >Höherer Berufsbildungsgang — Entwicklung von
+                  Multiplattform-Anwendungen (DAM)</span
+                >
+              </h2>
+              <p class="cv-entry__meta">
+                <time datetime="2025-09">09/2025</time> –
+                <span class="lang-es">Presente</span
+                ><span class="lang-en">Present</span
+                ><span class="lang-gl">Presente</span
+                ><span class="lang-de">Heute</span> ·
+                <abbr title="Centro de Referencia Profesional">CPR</abbr> Daniel
+                Castelao, Vigo
+              </p>
+            </article>
+
+            <article class="cv-entry" aria-labelledby="edu-2">
+              <h2 id="edu-2" class="cv-entry__title">
+                <span class="lang-es">Bachillerato — Ciencias Sociales</span
+                ><span class="lang-en"
+                  >High School Diploma — Social Sciences</span
+                ><span class="lang-gl">Bacharelato — Ciencias Sociais</span
+                ><span class="lang-de">Abitur — Sozialwissenschaften</span>
+              </h2>
+              <p class="cv-entry__meta">
+                <time datetime="2024-10">10/2024</time> –
+                <time datetime="2025-06">06/2025</time>
+                ·
+                <abbr title="Instituto de Educación Secundaria">IES</abbr>
+                Castelao, Vigo
+              </p>
+            </article>
+          </div>
+
+          <div>
+            <h2>
+              <span class="lang-es">Formación Complementaria</span
+              ><span class="lang-en">Complementary Training</span
+              ><span class="lang-gl">Formación Complementaria</span
+              ><span class="lang-de">Ergänzende Weiterbildung</span>
+            </h2>
+
+            <article class="cv-entry" aria-labelledby="edu-self">
+              <h2 id="edu-self" class="cv-entry__title">
+                <span class="lang-es"
+                  >Aprendizaje Autodidacta — IA y Tecnología</span
+                ><span class="lang-en">Self-taught — AI &amp; Technology</span
+                ><span class="lang-gl"
+                  >Aprendizaxe Autodidacta — IA e Tecnoloxía</span
+                ><span class="lang-de"
+                  >Selbststudium — KI &amp; Technologie</span
+                >
+              </h2>
+              <p class="cv-entry__meta">
+                2020 – <span class="lang-es">Actualidad</span
+                ><span class="lang-en">Present</span
+                ><span class="lang-gl">Actualidade</span
+                ><span class="lang-de">Heute</span>
+              </p>
+              <p class="cv-entry__desc">
+                <span class="lang-es"
+                  >Investigación continua en inteligencia artificial, desarrollo
+                  de aplicaciones y nuevas tecnologías mediante documentación
+                  técnica, tutoriales y proyectos propios.</span
+                ><span class="lang-en"
+                  >Ongoing research in artificial intelligence, app development
+                  and emerging technologies through technical documentation,
+                  tutorials and personal projects.</span
+                ><span class="lang-gl"
+                  >Investigación continua en intelixencia artificial,
+                  desenvolvemento de aplicacións e novas tecnoloxías mediante
+                  documentación técnica, tutoriais e proxectos propios.</span
+                ><span class="lang-de"
+                  >Laufende Forschung zu künstlicher Intelligenz,
+                  App-Entwicklung und neuen Technologien durch technische
+                  Dokumentation, Tutorials und eigene Projekte.</span
+                >
+              </p>
+            </article>
+
+            <article class="cv-entry" aria-labelledby="edu-extra">
+              <h2 id="edu-extra" class="cv-entry__title">
+                <span class="lang-es">Cursos y Certificados</span
+                ><span class="lang-en">Courses &amp; Certificates</span
+                ><span class="lang-gl">Cursos e Certificados</span
+                ><span class="lang-de">Kurse &amp; Zertifikate</span>
+              </h2>
+              <p class="cv-entry__desc">
+                <span class="lang-es"
+                  >Añade aquí cursos online, certificaciones u otras
+                  formaciones.</span
+                ><span class="lang-en"
+                  >Add online courses, certifications or other training
+                  here.</span
+                ><span class="lang-gl"
+                  >Engade aquí cursos online, certificacións ou outras
+                  formacións.</span
+                ><span class="lang-de"
+                  >Füge hier Online-Kurse, Zertifizierungen oder andere
+                  Weiterbildungen hinzu.</span
+                >
+              </p>
+            </article>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div>
-        E-mail:
-        <a href="mailto:millaez@outlook.com">millaez@outlook.com</a>
-      </div>
-
-      <div>
-        Github:
-        <a href="https://github.com/mmillanpelaez-bot">mmillanpelaez-bot</a>
+    <footer class="main-footer">
+      <div class="footer-container">
+        <address class="footer-links">
+          <a href="mailto:millaez@outlook.com">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#contact-icon" />
+            </svg>
+            millaez@outlook.com
+          </a>
+          <a
+            href="https://github.com/mmillanpelaez-bot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg class="icon icon--solid" aria-hidden="true">
+              <use href="assets/icons/icons.svg#github-icon" />
+            </svg>
+            mmillanpelaez-bot
+          </a>
+        </address>
+        <small
+          >&copy; <time datetime="2026">2026</time> Manuel Felipe Millán
+          Peláez</small
+        >
       </div>
     </footer>
   </body>

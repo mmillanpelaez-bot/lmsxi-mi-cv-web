@@ -1,52 +1,425 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Experience</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Felipe Millán — Experiencia laboral y proyectos."
+    />
+    <title>Felipe Millán | Experiencia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap"
+    />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>Felipe Millán</h1>
-      <p>Software Developer</p>
+    <header class="main-header">
+      <nav class="main-nav" aria-label="Main navigation">
+        <!-- Brand: grid col 1 (left-aligned) -->
+        <a
+          href="index.html"
+          class="nav-brand"
+          aria-label="Manuel Felipe Millán — Homepage"
+        >
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">millaez</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <!--
+          Hidden checkbox: position:absolute removes it from grid flow.
+          Must be before .nav-menu in DOM for: .menu-checkbox:checked ~ .nav-menu
+        -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+
+        <!-- Nav links: grid col 2 (centered on desktop, absolute dropdown on mobile) -->
+        <ul class="nav-menu" role="list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#home-icon" />
+              </svg>
+              <span class="lang-es">Inicio</span
+              ><span class="lang-en">Home</span
+              ><span class="lang-gl">Inicio</span
+              ><span class="lang-de">Startseite</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="experience.html"
+              class="nav-link active"
+              aria-current="page"
+            >
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#experience-icon" />
+              </svg>
+              <span class="lang-es">Experiencia</span
+              ><span class="lang-en">Experience</span
+              ><span class="lang-gl">Experiencia</span
+              ><span class="lang-de">Erfahrung</span>
+            </a>
+          </li>
+          <li>
+            <a href="education.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#education-icon" />
+              </svg>
+              <span class="lang-es">Formación</span
+              ><span class="lang-en">Education</span
+              ><span class="lang-gl">Formación</span
+              ><span class="lang-de">Ausbildung</span>
+            </a>
+          </li>
+          <li>
+            <a href="skills.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#skills-icon" />
+              </svg>
+              <span class="lang-es">Competencias</span
+              ><span class="lang-en">Skills</span
+              ><span class="lang-gl">Competencias</span
+              ><span class="lang-de">Kompetenzen</span>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="nav-link">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons/icons.svg#contact-icon" />
+              </svg>
+              <span class="lang-es">Contacto</span
+              ><span class="lang-en">Contact</span
+              ><span class="lang-gl">Contacto</span
+              ><span class="lang-de">Kontakt</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Nav controls: grid col 3 (right-aligned). Hamburger LAST = rightmost. -->
+        <div class="nav-controls">
+          <!-- Theme toggle: hidden checkbox + visible label (no JS) -->
+          <input type="checkbox" id="theme-toggle" class="theme-checkbox" />
+          <label
+            for="theme-toggle"
+            class="theme-toggle-label"
+            aria-label="Toggle light/dark theme"
+          >
+            <svg class="icon icon-sun" aria-hidden="true">
+              <use href="assets/icons/icons.svg#sun-icon" />
+            </svg>
+            <svg class="icon icon-moon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#moon-icon" />
+            </svg>
+          </label>
+
+          <!--
+            Language dropdown: opens on :hover / :focus-within — no JS.
+            4 radio inputs (name="lang") store the selected language.
+            CSS :has() reads their state to show/hide .lang-xx spans everywhere.
+          -->
+          <div
+            class="lang-dropdown"
+            role="group"
+            aria-label="Language / Idioma"
+          >
+            <button
+              class="lang-dropdown__trigger"
+              type="button"
+              aria-haspopup="listbox"
+            >
+              <svg
+                class="icon"
+                aria-hidden="true"
+                style="width: 0.85rem; height: 0.85rem"
+              >
+                <use href="assets/icons/icons.svg#globe-icon" />
+              </svg>
+              <span class="lang-es">ES</span>
+              <span class="lang-en">EN</span>
+              <span class="lang-gl">GL</span>
+              <span class="lang-de">DE</span>
+              <svg class="icon lang-chevron" aria-hidden="true">
+                <use href="assets/icons/icons.svg#chevron-down-icon" />
+              </svg>
+            </button>
+
+            <div class="lang-dropdown__menu" role="listbox">
+              <input type="radio" name="lang" id="lang-es" class="lang-radio" />
+              <label for="lang-es" role="option">
+                <span class="lang-code">ES</span>Español
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-en" class="lang-radio" />
+              <label for="lang-en" role="option">
+                <span class="lang-code">EN</span>English
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-gl" class="lang-radio" />
+              <label for="lang-gl" role="option">
+                <span class="lang-code">GL</span>Galego
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+              <input type="radio" name="lang" id="lang-de" class="lang-radio" />
+              <label for="lang-de" role="option">
+                <span class="lang-code">DE</span>Deutsch
+                <svg class="icon check-icon" aria-hidden="true">
+                  <use href="assets/icons/icons.svg#check-icon" />
+                </svg>
+              </label>
+            </div>
+          </div>
+
+          <!-- Hamburger: LAST in .nav-controls → always rightmost -->
+          <label
+            for="menu-toggle"
+            class="menu-toggle"
+            aria-label="Toggle navigation menu"
+          >
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#menu-icon" />
+            </svg>
+          </label>
+        </div>
+      </nav>
     </header>
 
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="skills.html">Skills</a></li>
-      </ul>
-    </nav>
+    <main class="main-content" id="main-content">
+      <section class="card" aria-labelledby="work-heading">
+        <h1 id="work-heading">
+          <span class="lang-es">Experiencia Laboral</span
+          ><span class="lang-en">Work Experience</span
+          ><span class="lang-gl">Experiencia Laboral</span
+          ><span class="lang-de">Berufserfahrung</span>
+        </h1>
+        <div class="entries-grid">
+          <article class="cv-entry" aria-labelledby="job-1">
+            <h2 id="job-1" class="cv-entry__title">
+              <span class="lang-es">Sector Servicios y Mantenimiento</span
+              ><span class="lang-en">Services &amp; Maintenance Sector</span
+              ><span class="lang-gl">Sector Servizos e Mantemento</span
+              ><span class="lang-de">Dienstleistungs- und Wartungssektor</span>
+            </h2>
+            <p class="cv-entry__meta">
+              <time datetime="2018">2018</time> –
+              <time datetime="2024">2024</time> · Vigo,
+              <span class="lang-es">España</span
+              ><span class="lang-en">Spain</span
+              ><span class="lang-gl">España</span
+              ><span class="lang-de">Spanien</span>
+            </p>
+            <ul class="cv-entry__list">
+              <li>
+                <span class="lang-es"
+                  ><strong>Logística y Mudanzas:</strong> Gestión de carga,
+                  organización de recursos y cumplimiento de plazos
+                  críticos.</span
+                >
+                <span class="lang-en"
+                  ><strong>Logistics &amp; Removals:</strong> Load management,
+                  resource organisation and meeting critical deadlines.</span
+                >
+                <span class="lang-gl"
+                  ><strong>Loxística e Mudanzas:</strong> Xestión de carga,
+                  organización de recursos e cumprimento de prazos
+                  críticos.</span
+                >
+                <span class="lang-de"
+                  ><strong>Logistik &amp; Umzüge:</strong> Ladungsmanagement,
+                  Ressourcenorganisation und Einhaltung kritischer
+                  Fristen.</span
+                >
+              </li>
+              <li>
+                <span class="lang-es"
+                  ><strong>Jardinería y Desbroce:</strong> Trabajo autónomo,
+                  mantenimiento de maquinaria y gestión de tareas por
+                  objetivos.</span
+                >
+                <span class="lang-en"
+                  ><strong>Gardening &amp; Clearing:</strong> Autonomous work,
+                  machinery maintenance and goal-based task management.</span
+                >
+                <span class="lang-gl"
+                  ><strong>Xardinería e Rozas:</strong> Traballo autónomo,
+                  mantemento de maquinaria e xestión de tarefas por
+                  obxectivos.</span
+                >
+                <span class="lang-de"
+                  ><strong>Gartenpflege &amp; Rodung:</strong> Selbstständige
+                  Arbeit, Maschinenwartung und zielorientiertes
+                  Aufgabenmanagement.</span
+                >
+              </li>
+            </ul>
+          </article>
 
-    <main>
-      <section>
-        <div>
-          <img src="img/frog_wizard.gif" alt="my-image" />
+          <article class="cv-entry" aria-labelledby="job-2">
+            <h2 id="job-2" class="cv-entry__title">
+              <span class="lang-es"
+                >Prácticas — Técnico de Mecatrónica Automotriz</span
+              ><span class="lang-en"
+                >Internship — Automotive Mechatronics Technician</span
+              ><span class="lang-gl"
+                >Prácticas — Técnico de Mecatrónica Automotriz</span
+              ><span class="lang-de">Praktikum — Kfz-Mechatroniker</span>
+            </h2>
+            <p class="cv-entry__meta">
+              <time datetime="2017">2017</time> –
+              <time datetime="2018">2018</time> ·
+              <abbr title="Auto-Teile-Unger">A.T.U.</abbr> &amp;
+              <span class="lang-es">sector construcción</span
+              ><span class="lang-en">construction sector</span
+              ><span class="lang-gl">sector construción</span
+              ><span class="lang-de">Bausektor</span>, Nuremberg,
+              <span class="lang-es">Alemania</span
+              ><span class="lang-en">Germany</span
+              ><span class="lang-gl">Alemaña</span
+              ><span class="lang-de">Deutschland</span>
+            </p>
+            <p class="cv-entry__desc">
+              <span class="lang-es"
+                >Prácticas en A.T.U. y sector construcción. Desarrollo de
+                autonomía y adaptabilidad en entornos de alta exigencia.</span
+              ><span class="lang-en"
+                >Internships at A.T.U. and in the construction sector. Developed
+                autonomy and adaptability in high-demand environments.</span
+              ><span class="lang-gl"
+                >Prácticas en A.T.U. e sector construción. Desenvolvemento de
+                autonomía e adaptabilidade en contornos de alta esixencia.</span
+              ><span class="lang-de"
+                >Praktika bei A.T.U. und im Bausektor. Entwicklung von
+                Selbstständigkeit und Anpassungsfähigkeit in anspruchsvollen
+                Umgebungen.</span
+              >
+            </p>
+          </article>
         </div>
       </section>
 
-      <section>
-        <h2>Work Experience</h2>
-        <p>01/2018 - 02/2018 Internship as a bricklayer, Nuremberg, Germany</p>
-        <p>
-          01/2017 - 02/2017 Internship as an automotive mechatronics technician,
-          A.T.U., Nuremberg, Germany
-        </p>
+      <section class="card" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">
+          <span class="lang-es">Proyectos Académicos</span
+          ><span class="lang-en">Academic Projects</span
+          ><span class="lang-gl">Proxectos Académicos</span
+          ><span class="lang-de">Akademische Projekte</span>
+        </h2>
+        <div class="entries-grid">
+          <article class="cv-entry" aria-labelledby="proj-cv">
+            <h2 id="proj-cv" class="cv-entry__title">
+              <span class="lang-es">Sitio Web de CV Personal</span
+              ><span class="lang-en">Personal CV Website</span
+              ><span class="lang-gl">Sitio Web de CV Persoal</span
+              ><span class="lang-de">Persönliche Lebenslauf-Website</span>
+            </h2>
+            <p class="cv-entry__meta">
+              <time datetime="2025-09">Sep 2025</time> –
+              <span class="lang-es">Actualidad</span
+              ><span class="lang-en">Present</span
+              ><span class="lang-gl">Actualidade</span
+              ><span class="lang-de">Heute</span> ·
+              <span class="lang-es">Módulo LMXSI — DAM</span
+              ><span class="lang-en">LMXSI Module — DAM</span
+              ><span class="lang-gl">Módulo LMXSI — DAM</span
+              ><span class="lang-de">Modul LMXSI — DAM</span>
+            </p>
+            <p class="cv-entry__desc">
+              <span class="lang-es"
+                >Sitio web de CV multi-página con HTML5 y CSS3: layouts
+                responsivos (Flexbox + Grid), toggle de tema oscuro/claro y
+                selector de 4 idiomas (ES/EN/GL/DE) mediante radio buttons y CSS
+                :has(), sin JavaScript.</span
+              ><span class="lang-en"
+                >Multi-page CV website with HTML5 and CSS3: responsive layouts
+                (Flexbox + Grid), dark/light theme toggle and 4-language
+                selector (ES/EN/GL/DE) using radio buttons and CSS :has(), no
+                JavaScript.</span
+              ><span class="lang-gl"
+                >Sitio web de CV multi-páxina con HTML5 e CSS3: layouts
+                responsivos (Flexbox + Grid), toggle de tema escuro/claro e
+                selector de 4 idiomas (ES/EN/GL/DE) con radio buttons e CSS
+                :has(), sen JavaScript.</span
+              ><span class="lang-de"
+                >Mehrseitige Lebenslauf-Website mit HTML5 und CSS3: responsive
+                Layouts (Flexbox + Grid), Dark/Light-Toggle und 4-Sprachauswahl
+                (ES/EN/GL/DE) via Radio-Buttons und CSS :has(), ohne
+                JavaScript.</span
+              >
+            </p>
+            <ul class="cv-entry__tags">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>SVG</li>
+              <li>Flexbox</li>
+              <li>Grid</li>
+              <li>CSS :has()</li>
+            </ul>
+          </article>
+
+          <article class="cv-entry" aria-labelledby="proj-placeholder">
+            <h2 id="proj-placeholder" class="cv-entry__title">
+              <span class="lang-es">Añadir más proyectos</span
+              ><span class="lang-en">Add more projects</span
+              ><span class="lang-gl">Engadir máis proxectos</span
+              ><span class="lang-de">Weitere Projekte</span>
+            </h2>
+            <p class="cv-entry__desc">
+              <span class="lang-es"
+                >Incluye aquí los proyectos de otros módulos del ciclo (Java,
+                BBDD, Android…).</span
+              ><span class="lang-en"
+                >Include here projects from other modules of the course (Java,
+                DB, Android…).</span
+              ><span class="lang-gl"
+                >Inclúe aquí os proxectos doutros módulos do ciclo (Java, BBDD,
+                Android…).</span
+              ><span class="lang-de"
+                >Füge hier Projekte aus anderen Modulen hinzu (Java, DB,
+                Android…).</span
+              >
+            </p>
+          </article>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <div>
-        E-mail:
-        <a href="mailto:millaez@outlook.com">millaez@outlook.com</a>
-      </div>
-
-      <div>
-        Github:
-        <a href="https://github.com/mmillanpelaez-bot">mmillanpelaez-bot</a>
+    <footer class="main-footer">
+      <div class="footer-container">
+        <address class="footer-links">
+          <a href="mailto:millaez@outlook.com">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons/icons.svg#contact-icon" />
+            </svg>
+            millaez@outlook.com
+          </a>
+          <a
+            href="https://github.com/mmillanpelaez-bot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg class="icon icon--solid" aria-hidden="true">
+              <use href="assets/icons/icons.svg#github-icon" />
+            </svg>
+            mmillanpelaez-bot
+          </a>
+        </address>
+        <small
+          >&copy; <time datetime="2026">2026</time> Manuel Felipe Millán
+          Peláez</small
+        >
       </div>
     </footer>
   </body>

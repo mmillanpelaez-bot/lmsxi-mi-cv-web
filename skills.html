@@ -1,78 +1,304 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skills</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Felipe Millán — Competencias técnicas, idiomas y habilidades interpersonales." />
+    <title>Felipe Millán | Competencias</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap" />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>Felipe Millán</h1>
-      <p>Software Developer</p>
+
+    <header class="main-header">
+      <nav class="main-nav" aria-label="Main navigation">
+
+        <!-- Brand: grid col 1 (left-aligned) -->
+        <a href="index.html" class="nav-brand" aria-label="Manuel Felipe Millán — Homepage">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-text">millaez</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <!--
+          Hidden checkbox: position:absolute removes it from grid flow.
+          Must be before .nav-menu in DOM for: .menu-checkbox:checked ~ .nav-menu
+        -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+
+        <!-- Nav links: grid col 2 (centered on desktop, absolute dropdown on mobile) -->
+        <ul class="nav-menu" role="list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#home-icon"/></svg>
+              <span class="lang-es">Inicio</span><span class="lang-en">Home</span><span class="lang-gl">Inicio</span><span class="lang-de">Startseite</span>
+            </a>
+          </li>
+          <li>
+            <a href="experience.html" class="nav-link">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#experience-icon"/></svg>
+              <span class="lang-es">Experiencia</span><span class="lang-en">Experience</span><span class="lang-gl">Experiencia</span><span class="lang-de">Erfahrung</span>
+            </a>
+          </li>
+          <li>
+            <a href="education.html" class="nav-link">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#education-icon"/></svg>
+              <span class="lang-es">Formación</span><span class="lang-en">Education</span><span class="lang-gl">Formación</span><span class="lang-de">Ausbildung</span>
+            </a>
+          </li>
+          <li>
+            <a href="skills.html" class="nav-link active" aria-current="page">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#skills-icon"/></svg>
+              <span class="lang-es">Competencias</span><span class="lang-en">Skills</span><span class="lang-gl">Competencias</span><span class="lang-de">Kompetenzen</span>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html" class="nav-link">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#contact-icon"/></svg>
+              <span class="lang-es">Contacto</span><span class="lang-en">Contact</span><span class="lang-gl">Contacto</span><span class="lang-de">Kontakt</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Nav controls: grid col 3 (right-aligned). Hamburger LAST = rightmost. -->
+        <div class="nav-controls">
+
+          <!-- Theme toggle: hidden checkbox + visible label (no JS) -->
+          <input type="checkbox" id="theme-toggle" class="theme-checkbox" />
+          <label for="theme-toggle" class="theme-toggle-label" aria-label="Toggle light/dark theme">
+            <svg class="icon icon-sun"  aria-hidden="true"><use href="assets/icons/icons.svg#sun-icon"/></svg>
+            <svg class="icon icon-moon" aria-hidden="true"><use href="assets/icons/icons.svg#moon-icon"/></svg>
+          </label>
+
+          <!--
+            Language dropdown: opens on :hover / :focus-within — no JS.
+            4 radio inputs (name="lang") store the selected language.
+            CSS :has() reads their state to show/hide .lang-xx spans everywhere.
+          -->
+          <div class="lang-dropdown" role="group" aria-label="Language / Idioma">
+            <button class="lang-dropdown__trigger" type="button" aria-haspopup="listbox">
+              <svg class="icon" aria-hidden="true" style="width:.85rem;height:.85rem;"><use href="assets/icons/icons.svg#globe-icon"/></svg>
+              <span class="lang-es">ES</span>
+              <span class="lang-en">EN</span>
+              <span class="lang-gl">GL</span>
+              <span class="lang-de">DE</span>
+              <svg class="icon lang-chevron" aria-hidden="true"><use href="assets/icons/icons.svg#chevron-down-icon"/></svg>
+            </button>
+
+            <div class="lang-dropdown__menu" role="listbox">
+              <input type="radio" name="lang" id="lang-es" class="lang-radio" />
+              <label for="lang-es" role="option">
+                <span class="lang-code">ES</span>Español
+                <svg class="icon check-icon" aria-hidden="true"><use href="assets/icons/icons.svg#check-icon"/></svg>
+              </label>
+              <input type="radio" name="lang" id="lang-en" class="lang-radio" />
+              <label for="lang-en" role="option">
+                <span class="lang-code">EN</span>English
+                <svg class="icon check-icon" aria-hidden="true"><use href="assets/icons/icons.svg#check-icon"/></svg>
+              </label>
+              <input type="radio" name="lang" id="lang-gl" class="lang-radio" />
+              <label for="lang-gl" role="option">
+                <span class="lang-code">GL</span>Galego
+                <svg class="icon check-icon" aria-hidden="true"><use href="assets/icons/icons.svg#check-icon"/></svg>
+              </label>
+              <input type="radio" name="lang" id="lang-de" class="lang-radio" />
+              <label for="lang-de" role="option">
+                <span class="lang-code">DE</span>Deutsch
+                <svg class="icon check-icon" aria-hidden="true"><use href="assets/icons/icons.svg#check-icon"/></svg>
+              </label>
+            </div>
+          </div>
+
+          <!-- Hamburger: LAST in .nav-controls → always rightmost -->
+          <label for="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#menu-icon"/></svg>
+          </label>
+
+        </div>
+      </nav>
     </header>
 
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="skills.html">Skills</a></li>
-      </ul>
-    </nav>
+    <main class="main-content" id="main-content">
 
-    <main>
-      <section>
-        <div>
-          <img src="img/frog_wizard.gif" alt="my-image" />
+      <!-- Technical skills — Grid + Flexbox bars (course requirements) -->
+      <section class="card" aria-labelledby="tech-heading">
+        <h1 id="tech-heading">
+          <span class="lang-es">Competencias Técnicas</span><span class="lang-en">Technical Skills</span><span class="lang-gl">Competencias Técnicas</span><span class="lang-de">Technische Kompetenzen</span>
+        </h1>
+        <div class="skills-grid">
+
+          <!-- Skill bars — Flexbox (course requirement) -->
+          <div class="skill-group">
+            <h3><span class="lang-es">Lenguajes de Programación</span><span class="lang-en">Programming Languages</span><span class="lang-gl">Linguaxes de Programación</span><span class="lang-de">Programmiersprachen</span></h3>
+            <ul class="skill-bars" role="list">
+              <li class="skill-bar">
+                <span class="skill-bar__name">HTML5</span>
+                <div class="skill-bar__track" role="progressbar"
+                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+                     aria-label="HTML5 85%">
+                  <div class="skill-bar__fill" style="--pct:85%"></div>
+                </div>
+                <span class="skill-bar__pct" aria-hidden="true">85%</span>
+              </li>
+              <li class="skill-bar">
+                <span class="skill-bar__name">CSS3</span>
+                <div class="skill-bar__track" role="progressbar"
+                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                     aria-label="CSS3 80%">
+                  <div class="skill-bar__fill" style="--pct:80%"></div>
+                </div>
+                <span class="skill-bar__pct" aria-hidden="true">80%</span>
+              </li>
+              <li class="skill-bar">
+                <span class="skill-bar__name">Java</span>
+                <div class="skill-bar__track" role="progressbar"
+                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                     aria-label="Java 70%">
+                  <div class="skill-bar__fill" style="--pct:70%"></div>
+                </div>
+                <span class="skill-bar__pct" aria-hidden="true">70%</span>
+              </li>
+              <li class="skill-bar">
+                <span class="skill-bar__name">Python</span>
+                <div class="skill-bar__track" role="progressbar"
+                     aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                     aria-label="Python 65%">
+                  <div class="skill-bar__fill" style="--pct:65%"></div>
+                </div>
+                <span class="skill-bar__pct" aria-hidden="true">65%</span>
+              </li>
+              <li class="skill-bar">
+                <span class="skill-bar__name">SQL</span>
+                <div class="skill-bar__track" role="progressbar"
+                     aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
+                     aria-label="SQL 65%">
+                  <div class="skill-bar__fill" style="--pct:65%"></div>
+                </div>
+                <span class="skill-bar__pct" aria-hidden="true">65%</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Technology tags -->
+          <div class="skill-group">
+            <h3><span class="lang-es">Tecnologías</span><span class="lang-en">Technologies</span><span class="lang-gl">Tecnoloxías</span><span class="lang-de">Technologien</span></h3>
+            <ul class="tag-list" role="list">
+              <li>XML</li><li>JSON</li><li>PostgreSQL</li><li>Git</li><li>GitHub</li>
+            </ul>
+
+            <h3 style="margin-top:1rem;">
+              <span class="lang-es">Herramientas de Desarrollo</span><span class="lang-en">Development Tools</span><span class="lang-gl">Ferramentas de Desenvolvemento</span><span class="lang-de">Entwicklungswerkzeuge</span>
+            </h3>
+            <ul class="tag-list" role="list">
+              <li>IntelliJ IDEA</li><li>Android Studio</li><li>Visual Studio</li>
+            </ul>
+          </div>
+
+          <!--
+            OS & Systems skill-group with Tux Linux mascot.
+            The Tux icon fades in on hover via CSS (.skill-group__mascot).
+          -->
+          <div class="skill-group">
+            <div class="skill-group__header">
+              <h3>
+                <span class="lang-es">Sistemas Operativos</span><span class="lang-en">Operating Systems</span><span class="lang-gl">Sistemas Operativos</span><span class="lang-de">Betriebssysteme</span>
+              </h3>
+              <!-- Tux: faded at rest, highlights on card hover -->
+              <svg class="icon icon--solid skill-group__mascot"
+                   role="img"
+                   aria-label="Tux — Linux mascot">
+                <use href="assets/icons/icons.svg#tux-icon"/>
+              </svg>
+            </div>
+            <ul class="tag-list" role="list">
+              <li>Linux</li><li>Windows</li><li>macOS</li>
+            </ul>
+            <h3 style="margin-top:1rem;">
+              <span class="lang-es">Gestión &amp; Servicios</span><span class="lang-en">Management &amp; Services</span><span class="lang-gl">Xestión &amp; Servizos</span><span class="lang-de">Verwaltung &amp; Dienste</span>
+            </h3>
+            <ul class="tag-list" role="list">
+              <li><span class="lang-es">Gestión SS.OO.</span><span class="lang-en">OS Management</span><span class="lang-gl">Xestión SS.OO.</span><span class="lang-de">BS-Verwaltung</span></li>
+              <li><span class="lang-es">Servicios Web</span><span class="lang-en">Web Services</span><span class="lang-gl">Servizos Web</span><span class="lang-de">Webdienste</span></li>
+            </ul>
+          </div>
+
+          <!-- Soft skills -->
+          <div class="skill-group">
+            <h3><span class="lang-es">Habilidades Interpersonales</span><span class="lang-en">Interpersonal Skills</span><span class="lang-gl">Habilidades Interpersoais</span><span class="lang-de">Interpersonelle Kompetenzen</span></h3>
+            <ul class="soft-list" role="list">
+              <li>
+                <span class="lang-es"><strong>Priorización lógica:</strong> capacidad de ordenar y abordar tareas según impacto y urgencia.</span>
+                <span class="lang-en"><strong>Logical prioritisation:</strong> ability to order and tackle tasks by impact and urgency.</span>
+                <span class="lang-gl"><strong>Priorización lóxica:</strong> capacidade de ordenar e abordar tarefas segundo impacto e urxencia.</span>
+                <span class="lang-de"><strong>Logische Priorisierung:</strong> Fähigkeit, Aufgaben nach Wirkung und Dringlichkeit zu ordnen.</span>
+              </li>
+              <li>
+                <span class="lang-es"><strong>Mediación de conflictos:</strong> facilitar acuerdos en entornos colaborativos.</span>
+                <span class="lang-en"><strong>Conflict mediation:</strong> facilitating agreements in collaborative environments.</span>
+                <span class="lang-gl"><strong>Mediación de conflitos:</strong> facilitar acordos en contornos colaborativos.</span>
+                <span class="lang-de"><strong>Konfliktmediation:</strong> Einigungen in kollaborativen Umgebungen fördern.</span>
+              </li>
+              <li>
+                <span class="lang-es"><strong>Ética profesional:</strong> compromiso con la responsabilidad, honestidad y calidad.</span>
+                <span class="lang-en"><strong>Professional ethics:</strong> commitment to responsibility, honesty and quality.</span>
+                <span class="lang-gl"><strong>Ética profesional:</strong> compromiso coa responsabilidade, honestidade e calidade.</span>
+                <span class="lang-de"><strong>Berufsethik:</strong> Verpflichtung zu Verantwortung, Ehrlichkeit und Qualität.</span>
+              </li>
+              <li>
+                <span class="lang-es"><strong>Adaptabilidad:</strong> consolidada tras vivir y trabajar en España, Alemania y Colombia.</span>
+                <span class="lang-en"><strong>Adaptability:</strong> consolidated after living and working in Spain, Germany and Colombia.</span>
+                <span class="lang-gl"><strong>Adaptabilidade:</strong> consolidada tras vivir e traballar en España, Alemaña e Colombia.</span>
+                <span class="lang-de"><strong>Anpassungsfähigkeit:</strong> gestärkt durch Leben und Arbeiten in Spanien, Deutschland und Kolumbien.</span>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
-      <section>
-        <div>
-          <h2>Language Skills</h2>
-          <p>Spanish Mother tongue</p>
-          <p>Galician Mother tongue</p>
-          <p>English C2 - Proficient</p>
-          <p>German B1 - Independent</p>
-          <p>Portuguese C1 - Proficient</p>
-        </div>
-
-        <div>
-          <h2>Digital Skills</h2>
-          <p>Programming Java, Python, JavaScript, C++</p>
-          <p>Markup languages HTML, CSS, XML, LaTeX, SVG, Markdown</p>
-          <p>Databases SQL (MySQL, PostgreSQL), NoSQL (MongoDB)</p>
-          <p>Development Tools Git, GitHub, Android Studio, Visual Studio</p>
-          <p>Operating Systems Windows, Linux, macOS</p>
-          <p>Office Suites Microsoft Office, Google Workspace</p>
-        </div>
-
-        <div>
-          <h2>Communication & Interpersonal Skills</h2>
-          <p>
-            Strong adaptability and autonomy developed from living and working
-            in diverse international environments.
-          </p>
-          <p>Proven ability to solve real-world problems.</p>
-          <p>
-            Comfortable and effective in both individual and team-based work.
-          </p>
-          <p>Observant, adaptable, and eager to learn new skills.</p>
-        </div>
+      <!-- Language skills — semantic definition list -->
+      <section class="card" aria-labelledby="lang-skills-heading">
+        <h2 id="lang-skills-heading">
+          <span class="lang-es">Idiomas</span><span class="lang-en">Language Skills</span><span class="lang-gl">Idiomas</span><span class="lang-de">Sprachkenntnisse</span>
+        </h2>
+        <dl class="lang-skills-grid">
+          <div class="lang-item">
+            <dt><span class="lang-es">Español</span><span class="lang-en">Spanish</span><span class="lang-gl">Español</span><span class="lang-de">Spanisch</span></dt>
+            <dd><span class="lang-es">Nativo</span><span class="lang-en">Native</span><span class="lang-gl">Nativo</span><span class="lang-de">Muttersprache</span></dd>
+          </div>
+          <div class="lang-item">
+            <dt><span class="lang-es">Gallego</span><span class="lang-en">Galician</span><span class="lang-gl">Galego</span><span class="lang-de">Galicisch</span></dt>
+            <dd><span class="lang-es">Nativo</span><span class="lang-en">Native</span><span class="lang-gl">Nativo</span><span class="lang-de">Muttersprache</span></dd>
+          </div>
+          <div class="lang-item">
+            <dt><span class="lang-es">Inglés</span><span class="lang-en">English</span><span class="lang-gl">Inglés</span><span class="lang-de">Englisch</span></dt>
+            <dd><abbr title="Common European Framework — C1 Advanced">C1</abbr></dd>
+          </div>
+          <div class="lang-item">
+            <dt><span class="lang-es">Portugués</span><span class="lang-en">Portuguese</span><span class="lang-gl">Portugués</span><span class="lang-de">Portugiesisch</span></dt>
+            <dd><abbr title="Common European Framework — B2 Upper Intermediate">B2</abbr></dd>
+          </div>
+          <div class="lang-item">
+            <dt><span class="lang-es">Alemán</span><span class="lang-en">German</span><span class="lang-gl">Alemán</span><span class="lang-de">Deutsch</span></dt>
+            <dd><abbr title="Common European Framework — B1 Threshold">B1</abbr></dd>
+          </div>
+        </dl>
       </section>
+
     </main>
 
-    <footer>
-      <div>
-        E-mail:
-        <a href="mailto:millaez@outlook.com">millaez@outlook.com</a>
-      </div>
-
-      <div>
-        Github:
-        <a href="https://github.com/mmillanpelaez-bot">mmillanpelaez-bot</a>
-      </div>
-    </footer>
-  </body>
-</html>
+    <footer class="main-footer">
+      <div class="footer-container">
+        <address class="footer-links">
+          <a href="/cdn-cgi/l/email-protection#6a070306060b0f102a051f1e0605050144090507">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#contact-icon"/></svg>
+            <span class="__cf_email__" data-cfemail="204d494c4c41455a604f55544c4f4f4b0e434f4d">[email&#160;protected]</span>
+          </a>
+          <a href="https://github.com/mmillanpelaez-bot" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon--solid" aria-hidden="true"><use href="assets/icons/icons.svg#github-icon"/></svg>
+            mmillanpelaez-bot
+          </a>
+        </address>
