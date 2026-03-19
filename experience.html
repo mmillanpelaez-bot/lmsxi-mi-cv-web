@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="description"
-      content="Felipe Millán — Experiencia laboral y proyectos."
+      content="Felipe Millán — Experiencia laboral y proyectos académicos."
     />
     <title>Felipe Millán | Experiencia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,26 +21,43 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <!--
+      Skip link: first focusable element on every page.
+      Invisible until focused by keyboard; lets keyboard/AT users
+      bypass repeated navigation and jump straight to main content.
+      Required for WAVE "0 errors" on navigation landmark tests.
+    -->
+    <a class="skip-link" href="#main-content">
+      <span class="lang-es">Saltar al contenido principal</span>
+      <span class="lang-en">Skip to main content</span>
+      <span class="lang-gl">Saltar ao contido principal</span>
+      <span class="lang-de">Zum Hauptinhalt springen</span>
+    </a>
+
     <header class="main-header">
       <nav class="main-nav" aria-label="Main navigation">
-        <!-- Brand: grid col 1 (left-aligned) -->
+        <!--
+          Brand: uses aria-label "Portfolio de Manuel Felipe Millán"
+          to distinguish it from the "Inicio" nav link (same href on
+          index.html) — avoids WAVE "redundant link" alert.
+        -->
         <a
           href="index.html"
           class="nav-brand"
-          aria-label="Manuel Felipe Millán — Homepage"
+          aria-label="Portfolio de Manuel Felipe Millán — Ir al inicio"
         >
-          <span class="logo-bracket">&lt;</span>
+          <span class="logo-bracket" aria-hidden="true">&lt;</span>
           <span class="logo-text">millaez</span>
-          <span class="logo-bracket">/&gt;</span>
+          <span class="logo-bracket" aria-hidden="true">/&gt;</span>
         </a>
 
         <!--
-          Hidden checkbox: position:absolute removes it from grid flow.
-          Must be before .nav-menu in DOM for: .menu-checkbox:checked ~ .nav-menu
+          .sr-only (not width:0/height:0) keeps the checkbox in the
+          keyboard tab order while hiding it visually. CSS :checked and
+          :has() selectors read its state without JavaScript.
         -->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+        <input type="checkbox" id="menu-toggle" class="sr-only" />
 
-        <!-- Nav links: grid col 2 (centered on desktop, absolute dropdown on mobile) -->
         <ul class="nav-menu" role="list">
           <li>
             <a href="index.html" class="nav-link">
@@ -103,14 +120,13 @@
           </li>
         </ul>
 
-        <!-- Nav controls: grid col 3 (right-aligned). Hamburger LAST = rightmost. -->
         <div class="nav-controls">
-          <!-- Theme toggle: hidden checkbox + visible label (no JS) -->
-          <input type="checkbox" id="theme-toggle" class="theme-checkbox" />
+          <!-- Theme toggle -->
+          <input type="checkbox" id="theme-toggle" class="sr-only" />
           <label
             for="theme-toggle"
             class="theme-toggle-label"
-            aria-label="Toggle light/dark theme"
+            aria-label="Cambiar tema claro/oscuro"
           >
             <svg class="icon icon-sun" aria-hidden="true">
               <use href="assets/icons/icons.svg#sun-icon" />
@@ -121,19 +137,17 @@
           </label>
 
           <!--
-            Language dropdown: opens on :hover / :focus-within — no JS.
-            4 radio inputs (name="lang") store the selected language.
-            CSS :has() reads their state to show/hide .lang-xx spans everywhere.
+            Language selector: hover/:focus-within dropdown.
+            Radio buttons use .sr-only (keyboard-accessible).
+            No role="listbox"/role="option" — those require aria-selected
+            managed via JS; without it WAVE reports broken ARIA.
+            The native radio semantics are fully accessible without extra roles.
           -->
-          <div
-            class="lang-dropdown"
-            role="group"
-            aria-label="Language / Idioma"
-          >
+          <div class="lang-dropdown" aria-label="Selector de idioma">
             <button
               class="lang-dropdown__trigger"
               type="button"
-              aria-haspopup="listbox"
+              aria-label="Idioma seleccionado: Español — abrir selector"
             >
               <svg
                 class="icon"
@@ -142,39 +156,39 @@
               >
                 <use href="assets/icons/icons.svg#globe-icon" />
               </svg>
-              <span class="lang-es">ES</span>
-              <span class="lang-en">EN</span>
-              <span class="lang-gl">GL</span>
-              <span class="lang-de">DE</span>
+              <span class="lang-es" aria-hidden="true">ES</span>
+              <span class="lang-en" aria-hidden="true">EN</span>
+              <span class="lang-gl" aria-hidden="true">GL</span>
+              <span class="lang-de" aria-hidden="true">DE</span>
               <svg class="icon lang-chevron" aria-hidden="true">
                 <use href="assets/icons/icons.svg#chevron-down-icon" />
               </svg>
             </button>
 
-            <div class="lang-dropdown__menu" role="listbox">
-              <input type="radio" name="lang" id="lang-es" class="lang-radio" />
-              <label for="lang-es" role="option">
+            <div class="lang-dropdown__menu">
+              <input type="radio" name="lang" id="lang-es" class="sr-only" />
+              <label for="lang-es">
                 <span class="lang-code">ES</span>Español
                 <svg class="icon check-icon" aria-hidden="true">
                   <use href="assets/icons/icons.svg#check-icon" />
                 </svg>
               </label>
-              <input type="radio" name="lang" id="lang-en" class="lang-radio" />
-              <label for="lang-en" role="option">
+              <input type="radio" name="lang" id="lang-en" class="sr-only" />
+              <label for="lang-en">
                 <span class="lang-code">EN</span>English
                 <svg class="icon check-icon" aria-hidden="true">
                   <use href="assets/icons/icons.svg#check-icon" />
                 </svg>
               </label>
-              <input type="radio" name="lang" id="lang-gl" class="lang-radio" />
-              <label for="lang-gl" role="option">
+              <input type="radio" name="lang" id="lang-gl" class="sr-only" />
+              <label for="lang-gl">
                 <span class="lang-code">GL</span>Galego
                 <svg class="icon check-icon" aria-hidden="true">
                   <use href="assets/icons/icons.svg#check-icon" />
                 </svg>
               </label>
-              <input type="radio" name="lang" id="lang-de" class="lang-radio" />
-              <label for="lang-de" role="option">
+              <input type="radio" name="lang" id="lang-de" class="sr-only" />
+              <label for="lang-de">
                 <span class="lang-code">DE</span>Deutsch
                 <svg class="icon check-icon" aria-hidden="true">
                   <use href="assets/icons/icons.svg#check-icon" />
@@ -187,7 +201,7 @@
           <label
             for="menu-toggle"
             class="menu-toggle"
-            aria-label="Toggle navigation menu"
+            aria-label="Abrir/cerrar menú de navegación"
           >
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons/icons.svg#menu-icon" />
@@ -224,16 +238,16 @@
             <ul class="cv-entry__list">
               <li>
                 <span class="lang-es"
-                  ><strong>Logística y Mudanzas:</strong> Gestión de carga,
+                  ><strong>Logística y Mudanzas:</strong> gestión de carga,
                   organización de recursos y cumplimiento de plazos
                   críticos.</span
                 >
                 <span class="lang-en"
-                  ><strong>Logistics &amp; Removals:</strong> Load management,
+                  ><strong>Logistics &amp; Removals:</strong> load management,
                   resource organisation and meeting critical deadlines.</span
                 >
                 <span class="lang-gl"
-                  ><strong>Loxística e Mudanzas:</strong> Xestión de carga,
+                  ><strong>Loxística e Mudanzas:</strong> xestión de carga,
                   organización de recursos e cumprimento de prazos
                   críticos.</span
                 >
@@ -245,23 +259,20 @@
               </li>
               <li>
                 <span class="lang-es"
-                  ><strong>Jardinería y Desbroce:</strong> Trabajo autónomo,
-                  mantenimiento de maquinaria y gestión de tareas por
-                  objetivos.</span
+                  ><strong>Jardinería y Desbroce:</strong> trabajo autónomo,
+                  mantenimiento de maquinaria y gestión por objetivos.</span
                 >
                 <span class="lang-en"
-                  ><strong>Gardening &amp; Clearing:</strong> Autonomous work,
+                  ><strong>Gardening &amp; Clearing:</strong> autonomous work,
                   machinery maintenance and goal-based task management.</span
                 >
                 <span class="lang-gl"
-                  ><strong>Xardinería e Rozas:</strong> Traballo autónomo,
-                  mantemento de maquinaria e xestión de tarefas por
-                  obxectivos.</span
+                  ><strong>Xardinería e Rozas:</strong> traballo autónomo,
+                  mantemento de maquinaria e xestión por obxectivos.</span
                 >
                 <span class="lang-de"
-                  ><strong>Gartenpflege &amp; Rodung:</strong> Selbstständige
-                  Arbeit, Maschinenwartung und zielorientiertes
-                  Aufgabenmanagement.</span
+                  ><strong>Gartenpflege &amp; Rodung:</strong> selbstständige
+                  Arbeit, Maschinenwartung und Aufgabenmanagement.</span
                 >
               </li>
             </ul>
@@ -293,23 +304,27 @@
             <p class="cv-entry__desc">
               <span class="lang-es"
                 >Prácticas en A.T.U. y sector construcción. Desarrollo de
-                autonomía y adaptabilidad en entornos de alta exigencia.</span
+                autonomía y adaptabilidad en entornos de alta exigencia y
+                diversidad cultural.</span
               ><span class="lang-en"
                 >Internships at A.T.U. and in the construction sector. Developed
-                autonomy and adaptability in high-demand environments.</span
+                autonomy and adaptability in high-demand, culturally diverse
+                environments.</span
               ><span class="lang-gl"
                 >Prácticas en A.T.U. e sector construción. Desenvolvemento de
-                autonomía e adaptabilidade en contornos de alta esixencia.</span
+                autonomía e adaptabilidade en contornos de alta esixencia e
+                diversidade cultural.</span
               ><span class="lang-de"
                 >Praktika bei A.T.U. und im Bausektor. Entwicklung von
-                Selbstständigkeit und Anpassungsfähigkeit in anspruchsvollen
-                Umgebungen.</span
+                Selbstständigkeit und Anpassungsfähigkeit in anspruchsvollen,
+                kulturell vielfältigen Umgebungen.</span
               >
             </p>
           </article>
         </div>
       </section>
 
+      <!-- Second section: h2 (sibling to job h2s), projects are h3 -->
       <section class="card" aria-labelledby="projects-heading">
         <h2 id="projects-heading">
           <span class="lang-es">Proyectos Académicos</span
@@ -319,12 +334,12 @@
         </h2>
         <div class="entries-grid">
           <article class="cv-entry" aria-labelledby="proj-cv">
-            <h2 id="proj-cv" class="cv-entry__title">
+            <h3 id="proj-cv" class="cv-entry__title">
               <span class="lang-es">Sitio Web de CV Personal</span
               ><span class="lang-en">Personal CV Website</span
               ><span class="lang-gl">Sitio Web de CV Persoal</span
               ><span class="lang-de">Persönliche Lebenslauf-Website</span>
-            </h2>
+            </h3>
             <p class="cv-entry__meta">
               <time datetime="2025-09">Sep 2025</time> –
               <span class="lang-es">Actualidad</span
@@ -370,12 +385,12 @@
           </article>
 
           <article class="cv-entry" aria-labelledby="proj-placeholder">
-            <h2 id="proj-placeholder" class="cv-entry__title">
+            <h3 id="proj-placeholder" class="cv-entry__title">
               <span class="lang-es">Añadir más proyectos</span
               ><span class="lang-en">Add more projects</span
               ><span class="lang-gl">Engadir máis proxectos</span
               ><span class="lang-de">Weitere Projekte</span>
-            </h2>
+            </h3>
             <p class="cv-entry__desc">
               <span class="lang-es"
                 >Incluye aquí los proyectos de otros módulos del ciclo (Java,
@@ -396,14 +411,14 @@
       </section>
     </main>
 
-    <footer class="main-footer">
+    <footer class="main-footer" role="contentinfo">
       <div class="footer-container">
         <address class="footer-links">
-          <a href="mailto:millaez@outlook.com">
+          <a href="mailto:mmillanpelaez@danielcastelao.org">
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons/icons.svg#contact-icon" />
             </svg>
-            millaez@outlook.com
+            mmillanpelaez@danielcastelao.org
           </a>
           <a
             href="https://github.com/mmillanpelaez-bot"

@@ -2,457 +2,273 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="description"
-      content="Manuel Felipe Millán Peláez — Desarrollador de Aplicaciones Multiplataforma en formación. CV web personal."
-    />
+    <meta name="description" content="Felipe Millán — Desarrollador de Aplicaciones Multiplataforma en formación. CV web personal." />
     <title>Felipe Millán | Inicio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap" />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+
+    <!--
+      Skip link: first focusable element on every page.
+      Invisible until focused by keyboard; lets keyboard/AT users
+      bypass repeated navigation and jump straight to main content.
+      Required for WAVE "0 errors" on navigation landmark tests.
+    -->
+    <a class="skip-link" href="#main-content">
+      <span class="lang-es">Saltar al contenido principal</span>
+      <span class="lang-en">Skip to main content</span>
+      <span class="lang-gl">Saltar ao contido principal</span>
+      <span class="lang-de">Zum Hauptinhalt springen</span>
+    </a>
+
     <header class="main-header">
       <nav class="main-nav" aria-label="Main navigation">
-        <!-- Brand: grid col 1 (left-aligned) -->
-        <a
-          href="index.html"
-          class="nav-brand"
-          aria-label="Felipe Millán — Homepage"
-        >
-          <span class="logo-bracket">&lt;</span>
+
+        <!--
+          Brand: uses aria-label "Portfolio de Manuel Felipe Millán"
+          to distinguish it from the "Inicio" nav link (same href on
+          index.html) — avoids WAVE "redundant link" alert.
+        -->
+        <a href="index.html" class="nav-brand"
+           aria-label="Portfolio de Manuel Felipe Millán — Ir al inicio">
+          <span class="logo-bracket" aria-hidden="true">&lt;</span>
           <span class="logo-text">millaez</span>
-          <span class="logo-bracket">/&gt;</span>
+          <span class="logo-bracket" aria-hidden="true">/&gt;</span>
         </a>
 
         <!--
-          Hidden checkbox: position:absolute removes it from grid flow.
-          Must be before .nav-menu in DOM for: .menu-checkbox:checked ~ .nav-menu
+          .sr-only (not width:0/height:0) keeps the checkbox in the
+          keyboard tab order while hiding it visually. CSS :checked and
+          :has() selectors read its state without JavaScript.
         -->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+        <input type="checkbox" id="menu-toggle" class="sr-only" />
 
-        <!-- Nav links: grid col 2 (centered on desktop, absolute dropdown on mobile) -->
         <ul class="nav-menu" role="list">
           <li>
             <a href="index.html" class="nav-link active" aria-current="page">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#home-icon" />
-              </svg>
-              <span class="lang-es">Inicio</span
-              ><span class="lang-en">Home</span
-              ><span class="lang-gl">Inicio</span
-              ><span class="lang-de">Startseite</span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#home-icon"/></svg>
+              <span class="lang-es">Inicio</span><span class="lang-en">Home</span><span class="lang-gl">Inicio</span><span class="lang-de">Startseite</span>
             </a>
           </li>
           <li>
             <a href="experience.html" class="nav-link">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#experience-icon" />
-              </svg>
-              <span class="lang-es">Experiencia</span
-              ><span class="lang-en">Experience</span
-              ><span class="lang-gl">Experiencia</span
-              ><span class="lang-de">Erfahrung</span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#experience-icon"/></svg>
+              <span class="lang-es">Experiencia</span><span class="lang-en">Experience</span><span class="lang-gl">Experiencia</span><span class="lang-de">Erfahrung</span>
             </a>
           </li>
           <li>
             <a href="education.html" class="nav-link">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#education-icon" />
-              </svg>
-              <span class="lang-es">Formación</span
-              ><span class="lang-en">Education</span
-              ><span class="lang-gl">Formación</span
-              ><span class="lang-de">Ausbildung</span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#education-icon"/></svg>
+              <span class="lang-es">Formación</span><span class="lang-en">Education</span><span class="lang-gl">Formación</span><span class="lang-de">Ausbildung</span>
             </a>
           </li>
           <li>
             <a href="skills.html" class="nav-link">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#skills-icon" />
-              </svg>
-              <span class="lang-es">Competencias</span
-              ><span class="lang-en">Skills</span
-              ><span class="lang-gl">Competencias</span
-              ><span class="lang-de">Kompetenzen</span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#skills-icon"/></svg>
+              <span class="lang-es">Competencias</span><span class="lang-en">Skills</span><span class="lang-gl">Competencias</span><span class="lang-de">Kompetenzen</span>
             </a>
           </li>
           <li>
             <a href="contact.html" class="nav-link">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#contact-icon" />
-              </svg>
-              <span class="lang-es">Contacto</span
-              ><span class="lang-en">Contact</span
-              ><span class="lang-gl">Contacto</span
-              ><span class="lang-de">Kontakt</span>
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#contact-icon"/></svg>
+              <span class="lang-es">Contacto</span><span class="lang-en">Contact</span><span class="lang-gl">Contacto</span><span class="lang-de">Kontakt</span>
             </a>
           </li>
         </ul>
 
-        <!-- Nav controls: grid col 3 (right-aligned). Hamburger LAST = rightmost. -->
         <div class="nav-controls">
-          <!-- Theme toggle: hidden checkbox + visible label (no JS) -->
-          <input type="checkbox" id="theme-toggle" class="theme-checkbox" />
-          <label
-            for="theme-toggle"
-            class="theme-toggle-label"
-            aria-label="Toggle light/dark theme"
-          >
-            <svg class="icon icon-sun" aria-hidden="true">
-              <use href="assets/icons/icons.svg#sun-icon" />
-            </svg>
-            <svg class="icon icon-moon" aria-hidden="true">
-              <use href="assets/icons/icons.svg#moon-icon" />
-            </svg>
+
+          <!-- Theme toggle -->
+          <input type="checkbox" id="theme-toggle" class="sr-only" />
+          <label for="theme-toggle" class="theme-toggle-label"
+                 aria-label="Cambiar tema claro/oscuro">
+            <svg class="icon icon-sun"  aria-hidden="true"><use href="assets/icons/icons.svg#sun-icon"/></svg>
+            <svg class="icon icon-moon" aria-hidden="true"><use href="assets/icons/icons.svg#moon-icon"/></svg>
           </label>
 
           <!--
-            Language dropdown: opens on :hover / :focus-within — no JS.
-            4 radio inputs (name="lang") store the selected language.
-            CSS :has() reads their state to show/hide .lang-xx spans everywhere.
+            Language selector: hover/:focus-within dropdown.
+            Radio buttons use .sr-only (keyboard-accessible).
+            No role="listbox"/role="option" — those require aria-selected
+            managed via JS; without it WAVE reports broken ARIA.
+            The native radio semantics are fully accessible without extra roles.
           -->
-          <div
-            class="lang-dropdown"
-            role="group"
-            aria-label="Language / Idioma"
-          >
-            <button
-              class="lang-dropdown__trigger"
-              type="button"
-              aria-haspopup="listbox"
-            >
-              <svg
-                class="icon"
-                aria-hidden="true"
-                style="width: 0.85rem; height: 0.85rem"
-              >
-                <use href="assets/icons/icons.svg#globe-icon" />
+          <div class="lang-dropdown" aria-label="Selector de idioma">
+            <button class="lang-dropdown__trigger" type="button"
+                    aria-label="Idioma seleccionado: Español — abrir selector">
+              <svg class="icon" aria-hidden="true" style="width:.85rem;height:.85rem;">
+                <use href="assets/icons/icons.svg#globe-icon"/>
               </svg>
-              <span class="lang-es">ES</span>
-              <span class="lang-en">EN</span>
-              <span class="lang-gl">GL</span>
-              <span class="lang-de">DE</span>
+              <span class="lang-es" aria-hidden="true">ES</span>
+              <span class="lang-en" aria-hidden="true">EN</span>
+              <span class="lang-gl" aria-hidden="true">GL</span>
+              <span class="lang-de" aria-hidden="true">DE</span>
               <svg class="icon lang-chevron" aria-hidden="true">
-                <use href="assets/icons/icons.svg#chevron-down-icon" />
+                <use href="assets/icons/icons.svg#chevron-down-icon"/>
               </svg>
             </button>
 
-            <div class="lang-dropdown__menu" role="listbox">
-              <input type="radio" name="lang" id="lang-es" class="lang-radio" />
-              <label for="lang-es" role="option">
+            <div class="lang-dropdown__menu">
+              <input type="radio" name="lang" id="lang-es" class="sr-only" />
+              <label for="lang-es">
                 <span class="lang-code">ES</span>Español
                 <svg class="icon check-icon" aria-hidden="true">
-                  <use href="assets/icons/icons.svg#check-icon" />
+                  <use href="assets/icons/icons.svg#check-icon"/>
                 </svg>
               </label>
-              <input type="radio" name="lang" id="lang-en" class="lang-radio" />
-              <label for="lang-en" role="option">
+              <input type="radio" name="lang" id="lang-en" class="sr-only" />
+              <label for="lang-en">
                 <span class="lang-code">EN</span>English
                 <svg class="icon check-icon" aria-hidden="true">
-                  <use href="assets/icons/icons.svg#check-icon" />
+                  <use href="assets/icons/icons.svg#check-icon"/>
                 </svg>
               </label>
-              <input type="radio" name="lang" id="lang-gl" class="lang-radio" />
-              <label for="lang-gl" role="option">
+              <input type="radio" name="lang" id="lang-gl" class="sr-only" />
+              <label for="lang-gl">
                 <span class="lang-code">GL</span>Galego
                 <svg class="icon check-icon" aria-hidden="true">
-                  <use href="assets/icons/icons.svg#check-icon" />
+                  <use href="assets/icons/icons.svg#check-icon"/>
                 </svg>
               </label>
-              <input type="radio" name="lang" id="lang-de" class="lang-radio" />
-              <label for="lang-de" role="option">
+              <input type="radio" name="lang" id="lang-de" class="sr-only" />
+              <label for="lang-de">
                 <span class="lang-code">DE</span>Deutsch
                 <svg class="icon check-icon" aria-hidden="true">
-                  <use href="assets/icons/icons.svg#check-icon" />
+                  <use href="assets/icons/icons.svg#check-icon"/>
                 </svg>
               </label>
             </div>
           </div>
 
           <!-- Hamburger: LAST in .nav-controls → always rightmost -->
-          <label
-            for="menu-toggle"
-            class="menu-toggle"
-            aria-label="Toggle navigation menu"
-          >
+          <label for="menu-toggle" class="menu-toggle"
+                 aria-label="Abrir/cerrar menú de navegación">
             <svg class="icon" aria-hidden="true">
-              <use href="assets/icons/icons.svg#menu-icon" />
+              <use href="assets/icons/icons.svg#menu-icon"/>
             </svg>
           </label>
+
         </div>
       </nav>
     </header>
 
     <main class="main-content" id="main-content">
-      <!-- Hero — Flexbox: avatar + text side by side (course requirement) -->
+
+      <!-- Hero — Flexbox: avatar + text (course requirement: Flexbox) -->
       <section class="card hero-section" aria-labelledby="hero-name">
         <div class="hero-avatar">
           <img
-            src="/assets/images/frog_wizard.gif"
-            alt="Foto de Manuel Felipe Millán Peláez"
-            width="148"
-            height="148"
+            src="/assets/images/my-image.jpg"
+            alt="Foto de perfil de Manuel Felipe Millán Peláez"
+            width="148" height="148"
           />
         </div>
         <div class="hero-text">
           <h1 id="hero-name">Manuel Felipe Millán Peláez</h1>
           <p class="hero-subtitle">
-            <span class="lang-es"
-              >// Desarrollador de Aplicaciones Multiplataforma (en
-              formación)</span
-            ><span class="lang-en"
-              >// Multiplatform Application Developer (in training)</span
-            ><span class="lang-gl"
-              >// Desenvolvedor de Aplicacións Multiplataforma (en
-              formación)</span
-            ><span class="lang-de"
-              >// Entwickler für Multiplattform-Anwendungen (in
-              Ausbildung)</span
-            >
+            <span class="lang-es">// Desarrollador de Aplicaciones Multiplataforma (en formación)</span><span class="lang-en">// Multiplatform Application Developer (in training)</span><span class="lang-gl">// Desenvolvedor de Aplicacións Multiplataforma (en formación)</span><span class="lang-de">// Entwickler für Multiplattform-Anwendungen (in Ausbildung)</span>
           </p>
           <p>
-            <span class="lang-es"
-              >Profesional adaptable con experiencia internacional y gran
-              capacidad de aprendizaje. Mi paso por entornos diversos como
-              Alemania ha consolidado mi autonomía y enfoque resolutivo ante
-              problemas reales. Actualmente curso el ciclo superior de DAM,
-              orientando mi carrera hacia el desarrollo de software y la
-              ingeniería de datos.</span
-            >
-            <span class="lang-en"
-              >Adaptable professional with international experience and a strong
-              capacity for learning. My time in diverse environments such as
-              Germany consolidated my autonomy and problem-solving approach.
-              Currently studying the DAM higher vocational course, with a career
-              oriented towards software development and data engineering.</span
-            >
-            <span class="lang-gl"
-              >Profesional adaptable con experiencia internacional e gran
-              capacidade de aprendizaxe. O meu paso por contornos diversos como
-              Alemaña consolidou a miña autonomía e enfoque resolutivo ante
-              problemas reais. Actualmente curso o ciclo superior de DAM,
-              orientando a miña carreira cara ao desenvolvemento de software e a
-              enxeñaría de datos.</span
-            >
-            <span class="lang-de"
-              >Anpassungsfähiger Fachmann mit internationaler Erfahrung und
-              hoher Lernbereitschaft. Meine Zeit in verschiedenen Umgebungen wie
-              Deutschland stärkte meine Selbstständigkeit und meinen
-              lösungsorientierten Ansatz. Derzeit absolviere ich den höheren
-              DAM-Bildungsgang mit dem Ziel einer Karriere in der
-              Softwareentwicklung und Datentechnik.</span
-            >
+            <span class="lang-es">Profesional adaptable con experiencia internacional y gran capacidad de aprendizaje. Mi paso por entornos diversos como Alemania ha consolidado mi autonomía y enfoque resolutivo ante problemas reales. Actualmente curso el ciclo superior de DAM, orientando mi carrera hacia el desarrollo de software y la ingeniería de datos.</span>
+            <span class="lang-en">Adaptable professional with international experience and a strong capacity for learning. My time in diverse environments such as Germany consolidated my autonomy and problem-solving approach. Currently studying the DAM higher vocational course, with a career oriented towards software development and data engineering.</span>
+            <span class="lang-gl">Profesional adaptable con experiencia internacional e gran capacidade de aprendizaxe. O meu paso por contornos diversos como Alemaña consolidou a miña autonomía e enfoque resolutivo ante problemas reais. Actualmente curso o ciclo superior de DAM, orientando a miña carreira cara ao desenvolvemento de software e a enxeñaría de datos.</span>
+            <span class="lang-de">Anpassungsfähiger Fachmann mit internationaler Erfahrung und hoher Lernbereitschaft. Meine Zeit in verschiedenen Umgebungen wie Deutschland stärkte meine Selbstständigkeit und meinen lösungsorientierten Ansatz. Derzeit absolviere ich den höheren DAM-Bildungsgang mit dem Ziel einer Karriere in der Softwareentwicklung und Datentechnik.</span>
           </p>
         </div>
       </section>
 
-      <!-- Quick-links — CSS Grid 2×2 (course requirement) -->
+      <!-- Quick-links — CSS Grid 2×2 (course requirement: Grid) -->
       <section aria-labelledby="nav-cards-heading">
         <h2 id="nav-cards-heading">
-          <span class="lang-es">Explora mi CV</span
-          ><span class="lang-en">Explore my CV</span
-          ><span class="lang-gl">Explora o meu CV</span
-          ><span class="lang-de">Meinen Lebenslauf erkunden</span>
+          <span class="lang-es">Explora mi CV</span><span class="lang-en">Explore my CV</span><span class="lang-gl">Explora o meu CV</span><span class="lang-de">Meinen Lebenslauf erkunden</span>
         </h2>
-        <nav class="quicklinks-grid" aria-label="CV sections">
+        <nav class="quicklinks-grid" aria-label="Secciones del CV / CV sections"lang-es">Secciones del CV</span><span class="lang-en">CV sections</span><span class="lang-gl">Secciones do CV</span><span class="lang-de">Lebenslauf-Abschnitte</span>">
+
           <a href="experience.html" class="quicklink-card">
-            <div class="quicklink-icon">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#experience-icon" />
-              </svg>
+            <div class="quicklink-icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#experience-icon"/></svg>
             </div>
             <div>
-              <h3>
-                <span class="lang-es">Experiencia</span
-                ><span class="lang-en">Experience</span
-                ><span class="lang-gl">Experiencia</span
-                ><span class="lang-de">Erfahrung</span>
-              </h3>
-              <p>
-                <span class="lang-es">Proyectos y empleo</span
-                ><span class="lang-en">Projects &amp; work</span
-                ><span class="lang-gl">Proxectos e traballo</span
-                ><span class="lang-de">Projekte &amp; Arbeit</span>
-              </p>
+              <h3><span class="lang-es">Experiencia</span><span class="lang-en">Experience</span><span class="lang-gl">Experiencia</span><span class="lang-de">Erfahrung</span></h3>
+              <p><span class="lang-es">Proyectos y empleo</span><span class="lang-en">Projects &amp; work</span><span class="lang-gl">Proxectos e traballo</span><span class="lang-de">Projekte &amp; Arbeit</span></p>
             </div>
           </a>
 
           <a href="education.html" class="quicklink-card">
-            <div class="quicklink-icon">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#education-icon" />
-              </svg>
+            <div class="quicklink-icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#education-icon"/></svg>
             </div>
             <div>
-              <h3>
-                <span class="lang-es">Formación</span
-                ><span class="lang-en">Education</span
-                ><span class="lang-gl">Formación</span
-                ><span class="lang-de">Ausbildung</span>
-              </h3>
-              <p>
-                <span class="lang-es">Historial académico</span
-                ><span class="lang-en">Academic background</span
-                ><span class="lang-gl">Historial académico</span
-                ><span class="lang-de">Akademischer Werdegang</span>
-              </p>
+              <h3><span class="lang-es">Formación</span><span class="lang-en">Education</span><span class="lang-gl">Formación</span><span class="lang-de">Ausbildung</span></h3>
+              <p><span class="lang-es">Historial académico</span><span class="lang-en">Academic background</span><span class="lang-gl">Historial académico</span><span class="lang-de">Akademischer Werdegang</span></p>
             </div>
           </a>
 
           <a href="skills.html" class="quicklink-card">
-            <div class="quicklink-icon">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#skills-icon" />
-              </svg>
+            <div class="quicklink-icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#skills-icon"/></svg>
             </div>
             <div>
-              <h3>
-                <span class="lang-es">Competencias</span
-                ><span class="lang-en">Skills</span
-                ><span class="lang-gl">Competencias</span
-                ><span class="lang-de">Kompetenzen</span>
-              </h3>
-              <p>
-                <span class="lang-es">Técnicas e idiomas</span
-                ><span class="lang-en">Technical &amp; languages</span
-                ><span class="lang-gl">Técnicas e idiomas</span
-                ><span class="lang-de">Technisch &amp; Sprachen</span>
-              </p>
+              <h3><span class="lang-es">Competencias</span><span class="lang-en">Skills</span><span class="lang-gl">Competencias</span><span class="lang-de">Kompetenzen</span></h3>
+              <p><span class="lang-es">Técnicas e idiomas</span><span class="lang-en">Technical &amp; languages</span><span class="lang-gl">Técnicas e idiomas</span><span class="lang-de">Technisch &amp; Sprachen</span></p>
             </div>
           </a>
 
           <a href="contact.html" class="quicklink-card">
-            <div class="quicklink-icon">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons/icons.svg#contact-icon" />
-              </svg>
+            <div class="quicklink-icon" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#contact-icon"/></svg>
             </div>
             <div>
-              <h3>
-                <span class="lang-es">Contacto</span
-                ><span class="lang-en">Contact</span
-                ><span class="lang-gl">Contacto</span
-                ><span class="lang-de">Kontakt</span>
-              </h3>
-              <p>
-                <span class="lang-es">Ponte en contacto</span
-                ><span class="lang-en">Get in touch</span
-                ><span class="lang-gl">Ponte en contacto</span
-                ><span class="lang-de">Kontakt aufnehmen</span>
-              </p>
+              <h3><span class="lang-es">Contacto</span><span class="lang-en">Contact</span><span class="lang-gl">Contacto</span><span class="lang-de">Kontakt</span></h3>
+              <p><span class="lang-es">Ponte en contacto</span><span class="lang-en">Get in touch</span><span class="lang-gl">Ponte en contacto</span><span class="lang-de">Kontakt aufnehmen</span></p>
             </div>
           </a>
+
         </nav>
       </section>
 
-      <!-- Interests -->
       <section class="card" aria-labelledby="interests-heading">
         <h2 id="interests-heading">
-          <span class="lang-es">Intereses</span
-          ><span class="lang-en">Interests</span
-          ><span class="lang-gl">Intereses</span
-          ><span class="lang-de">Interessen</span>
+          <span class="lang-es">Intereses</span><span class="lang-en">Interests</span><span class="lang-gl">Intereses</span><span class="lang-de">Interessen</span>
         </h2>
         <div class="interests-grid">
           <div class="interest-item">
             <h3>Tech</h3>
-            <p>
-              <span class="lang-es"
-                >Investigación en IA, apps y nuevas tecnologías de forma
-                autodidacta.</span
-              ><span class="lang-en"
-                >Self-taught research in AI, apps and emerging
-                technologies.</span
-              ><span class="lang-gl"
-                >Investigación en IA, apps e novas tecnoloxías de forma
-                autodidacta.</span
-              ><span class="lang-de"
-                >Autodidaktische Forschung zu KI, Apps und neuen
-                Technologien.</span
-              >
-            </p>
+            <p><span class="lang-es">Investigación en IA, apps y nuevas tecnologías de forma autodidacta.</span><span class="lang-en">Self-taught research in AI, apps and emerging technologies.</span><span class="lang-gl">Investigación en IA, apps e novas tecnoloxías de forma autodidacta.</span><span class="lang-de">Autodidaktische Forschung zu KI, Apps und neuen Technologien.</span></p>
           </div>
           <div class="interest-item">
-            <h3>
-              <span class="lang-es">Análisis</span
-              ><span class="lang-en">Analysis</span
-              ><span class="lang-gl">Análise</span
-              ><span class="lang-de">Analyse</span>
-            </h3>
-            <p>
-              <span class="lang-es"
-                >Resolución de problemas complejos y estructuración de
-                datos.</span
-              ><span class="lang-en"
-                >Solving complex problems and structuring data.</span
-              ><span class="lang-gl"
-                >Resolución de problemas complexos e estruturación de
-                datos.</span
-              ><span class="lang-de"
-                >Lösung komplexer Probleme und Strukturierung von Daten.</span
-              >
-            </p>
+            <h3><span class="lang-es">Análisis</span><span class="lang-en">Analysis</span><span class="lang-gl">Análise</span><span class="lang-de">Analyse</span></h3>
+            <p><span class="lang-es">Resolución de problemas complejos y estructuración de datos.</span><span class="lang-en">Solving complex problems and structuring data.</span><span class="lang-gl">Resolución de problemas complexos e estruturación de datos.</span><span class="lang-de">Lösung komplexer Probleme und Strukturierung von Daten.</span></p>
           </div>
           <div class="interest-item">
-            <h3>
-              <span class="lang-es">Personal</span
-              ><span class="lang-en">Personal</span
-              ><span class="lang-gl">Persoal</span
-              ><span class="lang-de">Persönlich</span>
-            </h3>
-            <p>
-              <span class="lang-es"
-                >Literatura, historia, política y práctica regular de
-                deporte.</span
-              ><span class="lang-en"
-                >Literature, history, politics and regular sport.</span
-              ><span class="lang-gl"
-                >Literatura, historia, política e práctica regular de
-                deporte.</span
-              ><span class="lang-de"
-                >Literatur, Geschichte, Politik und regelmäßiger Sport.</span
-              >
-            </p>
+            <h3><span class="lang-es">Personal</span><span class="lang-en">Personal</span><span class="lang-gl">Persoal</span><span class="lang-de">Persönlich</span></h3>
+            <p><span class="lang-es">Literatura, historia, política y práctica regular de deporte.</span><span class="lang-en">Literature, history, politics and regular sport.</span><span class="lang-gl">Literatura, historia, política e práctica regular de deporte.</span><span class="lang-de">Literatur, Geschichte, Politik und regelmäßiger Sport.</span></p>
           </div>
         </div>
       </section>
+
     </main>
 
-    <footer class="main-footer">
+    <footer class="main-footer" role="contentinfo">
       <div class="footer-container">
         <address class="footer-links">
-          <a href="mailto:millaez@outlook.com">
-            <svg class="icon" aria-hidden="true">
-              <use href="assets/icons/icons.svg#contact-icon" />
-            </svg>
-            millaez@outlook.com
+          <a href="mailto:mmillanpelaez@danielcastelao.org">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons/icons.svg#contact-icon"/></svg>
+            mmillanpelaez@danielcastelao.org
           </a>
-          <a
-            href="https://github.com/mmillanpelaez-bot"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg class="icon icon--solid" aria-hidden="true">
-              <use href="assets/icons/icons.svg#github-icon" />
-            </svg>
+          <a href="https://github.com/mmillanpelaez-bot" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon--solid" aria-hidden="true"><use href="assets/icons/icons.svg#github-icon"/></svg>
             mmillanpelaez-bot
           </a>
         </address>
-        <small
-          >&copy; <time datetime="2026">2026</time> Manuel Felipe Millán
-          Peláez</small
-        >
+        <small>&copy; <time datetime="2026">2026</time> Manuel Felipe Millán Peláez</small>
       </div>
     </footer>
+
   </body>
 </html>

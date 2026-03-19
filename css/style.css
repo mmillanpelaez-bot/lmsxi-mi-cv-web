@@ -144,19 +144,15 @@
 body:has(#theme-toggle:checked) {
   /* Main colors (high-contrast on light backgrounds) */
   --color-primary: #b45309; /* amber-700  — 4.6:1 on white */
-  --color-secondary: #047857; /* emerald-700 — 5.0:1 on white */
+  --color-secondary: #c2410c; /* orange-700 — 5.9:1 on white */
   --color-accent: #d97706; /* amber-600 */
 
   /*
-    Gradients redefined explicitly here.
-    Reason: defining a custom property that contains var() inside
-    another custom property (--gradient-primary uses --color-primary)
-    is not guaranteed to re-evaluate when the depended-upon variable
-    changes in Firefox and older Chromium builds. Listing them
-    literally avoids the issue entirely.
+    Gradients redefined explicitly here (var-inside-var is unreliable
+    across Firefox / older Chromium when a dependency variable changes).
   */
-  --gradient-primary: linear-gradient(135deg, #b45309, #047857);
-  --gradient-accent: linear-gradient(135deg, #047857, #d97706);
+  --gradient-primary: linear-gradient(135deg, #b45309, #c2410c);
+  --gradient-accent: linear-gradient(135deg, #c2410c, #d97706);
 
   /* Warm parchment backgrounds */
   --bg-page: #fdfaf5;
@@ -310,6 +306,45 @@ a:hover {
 abbr[title] {
   text-decoration: underline dotted;
   cursor: help;
+}
+
+/* ============================================================
+ * 6b. SCREEN-READER ONLY & SKIP LINK
+ *     .sr-only  — visually hidden but remains in the tab order
+ *                 and is readable by screen readers.
+ *                 Use for checkboxes that CSS :has() reads.
+ *     .skip-link — appears on :focus so keyboard users can jump
+ *                  straight to main content past the nav.
+ * ============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.45rem 1rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: top var(--t-fast);
+}
+
+.skip-link:focus-visible {
+  top: 0;
 }
 
 /* ============================================================
@@ -550,12 +585,8 @@ p:last-child {
 }
 
 /* Hidden checkbox: position:absolute → removed from grid flow */
-.menu-checkbox {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+/* .menu-checkbox uses .sr-only class in HTML — keeps keyboard focus
+   while being visually hidden (WAVE-compliant). */
 
 /* ── 14b. Brand / Logo (grid col 1, left-aligned) ── */
 .nav-brand {
@@ -634,12 +665,7 @@ p:last-child {
 }
 
 /* ── 14f. Theme Toggle ── */
-.theme-checkbox {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+/* .theme-checkbox uses .sr-only class in HTML — same rationale. */
 
 .theme-toggle-label {
   display: flex;
@@ -745,12 +771,8 @@ p:last-child {
   transition-delay: 0s;
 }
 
-.lang-radio {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+/* .lang-radio uses .sr-only class in HTML — keeps radio inputs
+   keyboard-accessible while visually hidden. */
 
 .lang-dropdown__menu label {
   display: flex;
@@ -1109,14 +1131,33 @@ blockquote footer {
 }
 
 /* ============================================================
- * 17. EDUCATION GRID
- *     2 columns: formal / complementary training
+ * 17. EDUCATION FLAT GRID
+ *     Flat 2-column grid: headers in row 1, then cards paired
+ *     by row (CFGS|Autodidacta, Bachillerato|Cursos).
+ *     Cards in the same row stretch to equal height automatically.
+ *     No empty-column gaps: every row is full.
  * ============================================================ */
-.edu-grid {
+.edu-flat-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--gap-md);
-  align-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--gap-md);
+  row-gap: var(--gap-sm);
+  align-items: stretch;
+}
+
+/* Column header h2s sit in row 1 at their natural height */
+.edu-flat-grid > h2 {
+  font-size: clamp(1rem, 1.8vw + 0.2rem, 1.4rem);
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid
+    color-mix(in srgb, var(--color-primary) 30%, var(--border));
+  align-self: end; /* baseline-align the two column headers */
+}
+
+/* Cards are full-height flex columns so their content distributes nicely */
+.edu-flat-grid > .cv-entry {
+  height: 100%;
 }
 
 /* ============================================================
@@ -1126,9 +1167,33 @@ blockquote footer {
 /* ── 18a. Skills Grid — CSS Grid (course requirement) ── */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /*
+    Explicit 3 columns (1 per tech group).
+    The 4th card (.skill-group:last-child) always spans all 3 via
+    grid-column: 1/-1, giving a full-width row with multi-col content.
+    This is more predictable than auto-fit which causes orphan columns
+    at intermediate viewport widths (e.g. iPad ~820px).
+  */
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-sm);
   align-items: stretch;
+}
+
+/* Last card (Soft Skills) always spans the full width */
+.skills-grid > .skill-group:last-child {
+  grid-column: 1 / -1;
+}
+
+.skills-grid > .skill-group:last-child .soft-list {
+  columns: 3 220px;
+  column-gap: var(--gap-md);
+  display: block;
+  flex-direction: unset;
+}
+
+.skills-grid > .skill-group:last-child .soft-list li {
+  break-inside: avoid;
+  margin-bottom: 0.55rem;
 }
 
 .skill-group {
@@ -1146,6 +1211,21 @@ blockquote footer {
 
 .skill-group:hover {
   border-color: color-mix(in srgb, var(--color-primary) 35%, var(--border));
+}
+
+/*
+  .skill-label replaces <h3> inside .skill-group to avoid skipping
+  heading levels (h1→h3 without h2 would trigger WAVE errors).
+  It is a <p> element styled to look exactly like the old h3 labels.
+*/
+.skill-label {
+  font-size: clamp(0.68rem, 0.9vw + 0.3rem, 0.82rem);
+  font-family: var(--font-code);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--gap-xs);
+  line-height: 1.2;
 }
 
 /* ── 18b. Skill Bars — Flexbox (course requirement) ── */
@@ -1557,10 +1637,17 @@ blockquote footer {
     opacity: 1;
   }
 
-  /* Language dropdown: open leftward on mobile */
+  /*
+    Language dropdown on mobile:
+    - Keep right:0 so the menu's right edge aligns with the trigger (opens leftward).
+    - Remove the "left:0" override that caused overflow to the right.
+    - max-width clamps the panel to the viewport width with a small inset.
+    - left:auto cancels any previous left value so right:0 takes full effect.
+  */
   .lang-dropdown__menu {
-    right: auto;
-    left: 0;
+    right: 0;
+    left: auto;
+    max-width: calc(100vw - 1.5rem);
   }
 
   /* Hero stacks vertically */
@@ -1573,16 +1660,35 @@ blockquote footer {
     max-width: none;
   }
 
-  /* All multi-column grids → 1 column */
+  /* Responsive grid overrides */
   .quicklinks-grid {
     grid-template-columns: repeat(2, 1fr);
   } /* keep 2-col on tablet */
   .entries-grid,
-  .edu-grid,
-  .skills-grid,
   .interests-grid,
   .contact-layout {
     grid-template-columns: 1fr;
+  }
+
+  /* Education flat grid: stack columns vertically on mobile */
+  .edu-flat-grid {
+    grid-template-columns: 1fr;
+  }
+  .edu-flat-grid > h2:last-of-type {
+    margin-top: var(--gap-sm);
+  }
+
+  /* Skills: collapse to 2 cols at ≤768px */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* 3rd card (OS) is alone in row 2 → span full width */
+  .skills-grid > .skill-group:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+  /* Soft-skills last-child: fewer columns in narrower space */
+  .skills-grid > .skill-group:last-child .soft-list {
+    columns: 2 160px;
   }
 }
 
@@ -1604,6 +1710,17 @@ blockquote footer {
 
   .skill-bar__name {
     width: 5rem;
+  }
+
+  /* Skills: 1 column — reset all span overrides */
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .skills-grid > .skill-group:nth-child(3) {
+    grid-column: unset;
+  }
+  .skills-grid > .skill-group:last-child .soft-list {
+    columns: 1;
   }
 
   .btn-submit {
