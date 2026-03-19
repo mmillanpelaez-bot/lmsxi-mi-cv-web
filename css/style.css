@@ -1213,11 +1213,8 @@ blockquote footer {
   border-color: color-mix(in srgb, var(--color-primary) 35%, var(--border));
 }
 
-/*
-  .skill-label replaces <h3> inside .skill-group to avoid skipping
-  heading levels (h1→h3 without h2 would trigger WAVE errors).
-  It is a <p> element styled to look exactly like the old h3 labels.
-*/
+/* .skill-label replaces <h3> inside .skill-group to avoid skipping
+  heading levels (WAVE friendly). */
 .skill-label {
   font-size: clamp(0.68rem, 0.9vw + 0.3rem, 0.82rem);
   font-family: var(--font-code);
