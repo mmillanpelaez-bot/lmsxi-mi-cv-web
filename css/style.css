@@ -144,15 +144,20 @@
 body:has(#theme-toggle:checked) {
   /* Main colors (high-contrast on light backgrounds) */
   --color-primary: #b45309; /* amber-700  — 4.6:1 on white */
-  --color-secondary: #c2410c; /* orange-700 — 5.9:1 on white */
-  --color-accent: #d97706; /* amber-600 */
+  --color-secondary: #603E25; /* orange-700 — 5.9:1 on white */
+  --color-accent: #332B25; /* amber-600 */
 
-  /*
-    Gradients redefined explicitly here (var-inside-var is unreliable
-    across Firefox / older Chromium when a dependency variable changes).
-  */
-  --gradient-primary: linear-gradient(135deg, #b45309, #c2410c);
-  --gradient-accent: linear-gradient(135deg, #c2410c, #d97706);
+  /* Gradients redefined here for compatibility with older browsers. */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    var(--color-secondary),
+    var(--color-accent)
+  );
 
   /* Warm parchment backgrounds */
   --bg-page: #fdfaf5;
