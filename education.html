@@ -22,7 +22,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   </head>
   <body>
-    <!-- Skip link (WAVE friendly) -->
+    <!-- Skip link — visually hidden off-screen, becomes visible on keyboard focus (WAVE friendly). -->
     <a class="skip-link" href="#main-content">
       <span class="lang-es">Saltar al contenido principal</span>
       <span class="lang-en">Skip to main content</span>
@@ -108,7 +108,7 @@
         </ul>
 
         <div class="nav-controls">
-          <!-- Theme toggle -->
+          <!-- Theme toggle: hidden checkbox toggles .theme-toggle-label on :checked -->
           <input type="checkbox" id="theme-toggle" class="sr-only" />
           <label
             for="theme-toggle"
@@ -202,10 +202,10 @@
         </h1>
 
         <!--
-          Flat 2-column grid (edu-flat-grid):
-          Row 1: column h2 headers side by side
-          Rows 2+: cv-entry pairs — equal height per row, no orphan gaps.
-          (course requirement: CSS Grid)
+          Education grid: 2-column CSS Grid layout (edu-flat-grid) with gap and
+          responsive adjustments. Each entry is an article with a heading,
+          meta info and description. Semantic HTML used for accessibility and
+          structure. Column headings in row 1, entries in subsequent rows.
         -->
         <div class="edu-flat-grid">
           <!-- Row 1: column headings -->

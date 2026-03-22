@@ -19,6 +19,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   </head>
   <body>
+    <!-- Skip link — visually hidden off-screen, becomes visible on keyboard focus (WAVE friendly). -->
     <a class="skip-link" href="#main-content">
       <span class="lang-es">Saltar al contenido principal</span>
       <span class="lang-en">Skip to main content</span>
@@ -38,6 +39,7 @@
           <span class="logo-bracket" aria-hidden="true">/&gt;</span>
         </a>
 
+        <!-- Hamburger toggle: hidden checkbox toggles .nav-menu and .lang-dropdown on :checked -->
         <input type="checkbox" id="menu-toggle" class="sr-only" />
 
         <ul class="nav-menu" role="list">
@@ -99,6 +101,7 @@
         </ul>
 
         <div class="nav-controls">
+          <!-- Theme toggle: hidden checkbox toggles .theme-toggle-label on :checked -->
           <input type="checkbox" id="theme-toggle" class="sr-only" />
           <label
             for="theme-toggle"

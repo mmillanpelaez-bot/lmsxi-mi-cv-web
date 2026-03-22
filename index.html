@@ -22,6 +22,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   </head>
   <body>
+    <!-- Skip link — visually hidden off-screen, becomes visible on keyboard focus (WCAG compliant). -->
     <a class="skip-link" href="#main-content">
       <span class="lang-es">Saltar al contenido principal</span>
       <span class="lang-en">Skip to main content</span>
@@ -41,6 +42,7 @@
           <span class="logo-bracket" aria-hidden="true">/&gt;</span>
         </a>
 
+        <!-- Hamburger toggle: hidden checkbox toggles .nav-menu and .lang-dropdown on :checked -->
         <input type="checkbox" id="menu-toggle" class="sr-only" />
 
         <ul class="nav-menu" role="list">
@@ -101,6 +103,7 @@
           </li>
         </ul>
 
+        <!-- Theme toggle: hidden checkbox toggles .theme-toggle-label on :checked -->
         <div class="nav-controls">
           <input type="checkbox" id="theme-toggle" class="sr-only" />
           <label
@@ -248,7 +251,6 @@
           ><span class="lang-gl">Explora o meu CV</span
           ><span class="lang-de">Meinen Lebenslauf erkunden</span>
         </h2>
-        <!-- aria-label is a plain static string — no t() injection into attributes -->
         <nav
           class="quicklinks-grid"
           aria-label="Secciones del CV / CV sections"

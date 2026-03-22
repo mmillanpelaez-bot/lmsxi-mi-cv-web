@@ -22,12 +22,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   </head>
   <body>
-    <!--
-      Skip link: first focusable element on every page.
-      Invisible until focused by keyboard; lets keyboard/AT users
-      bypass repeated navigation and jump straight to main content.
-      Required for WAVE "0 errors" on navigation landmark tests.
-    -->
+    <!-- Skip link — visually hidden off-screen, becomes visible on keyboard focus (WAVE friendly). -->
     <a class="skip-link" href="#main-content">
       <span class="lang-es">Saltar al contenido principal</span>
       <span class="lang-en">Skip to main content</span>
@@ -40,7 +35,7 @@
         <!--
           Brand: uses aria-label "Portfolio de Manuel Felipe Millán"
           to distinguish it from the "Inicio" nav link (same href on
-          index.html) — avoids WAVE "redundant link" alert.
+          index.html) — (WCAG).
         -->
         <a
           href="index.html"
@@ -52,11 +47,7 @@
           <span class="logo-bracket" aria-hidden="true">/&gt;</span>
         </a>
 
-        <!--
-          .sr-only (not width:0/height:0) keeps the checkbox in the
-          keyboard tab order while hiding it visually. CSS :checked and
-          :has() selectors read its state without JavaScript.
-        -->
+        <!-- Hamburger toggle: hidden checkbox toggles .nav-menu and .lang-dropdown on :checked -->
         <input type="checkbox" id="menu-toggle" class="sr-only" />
 
         <ul class="nav-menu" role="list">
@@ -134,11 +125,8 @@
           </label>
 
           <!--
-            Language selector: hover/:focus-within dropdown.
-            Radio buttons use .sr-only (keyboard-accessible).
-            No role="listbox"/role="option" — those require aria-selected
-            managed via JS; without it WAVE reports broken ARIA.
-            The native radio semantics are fully accessible without extra roles.
+            Language selector: custom dropdown with radio buttons and CSS :has()
+            for interactivity, no JavaScript. WCAG compliant.
           -->
           <div class="lang-dropdown" aria-label="Selector de idioma">
             <button
@@ -218,11 +206,9 @@
         </h1>
 
         <!--
-          skills-grid: repeat(3, 1fr) — 3 tech cards in row 1,
-          last card (Soft Skills) spans all 3 columns in row 2.
-          (course requirements: CSS Grid + Flexbox for skill bars)
-          Skill-group labels use <p class="skill-label"> (not <h*>)
-          to maintain correct heading hierarchy: h1 → (no skip) → h2 in next section.
+          Skills grid: 3-column CSS Grid layout (skills-grid) with gap and
+          responsive adjustments. Each card (skill-group) has a header and
+          content. Semantic HTML lists used for screen readers and structure.
         -->
         <div class="skills-grid">
           <!-- Card 1: Programming language skill bars (Flexbox) -->

@@ -22,12 +22,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   </head>
   <body>
-    <!--
-      Skip link: first focusable element on every page.
-      Invisible until focused by keyboard; lets keyboard/AT users
-      bypass repeated navigation and jump straight to main content.
-      Required for WAVE "0 errors" on navigation landmark tests.
-    -->
+    <!-- Skip link — visually hidden off-screen, becomes visible on keyboard focus (WAVE friendly). -->
     <a class="skip-link" href="#main-content">
       <span class="lang-es">Saltar al contenido principal</span>
       <span class="lang-en">Skip to main content</span>
@@ -40,7 +35,7 @@
         <!--
           Brand: uses aria-label "Portfolio de Manuel Felipe Millán"
           to distinguish it from the "Inicio" nav link (same href on
-          index.html) — avoids WAVE "redundant link" alert.
+          index.html) — WAVE friendly.
         -->
         <a
           href="index.html"
@@ -52,11 +47,7 @@
           <span class="logo-bracket" aria-hidden="true">/&gt;</span>
         </a>
 
-        <!--
-          .sr-only (not width:0/height:0) keeps the checkbox in the
-          keyboard tab order while hiding it visually. CSS :checked and
-          :has() selectors read its state without JavaScript.
-        -->
+        <!-- Hamburger toggle: hidden checkbox toggles .nav-menu and .lang-dropdown on :checked -->
         <input type="checkbox" id="menu-toggle" class="sr-only" />
 
         <ul class="nav-menu" role="list">
@@ -122,7 +113,7 @@
         </ul>
 
         <div class="nav-controls">
-          <!-- Theme toggle -->
+          <!-- Theme toggle: hidden checkbox toggles .theme-toggle-label on :checked -->
           <input type="checkbox" id="theme-toggle" class="sr-only" />
           <label
             for="theme-toggle"
@@ -138,11 +129,8 @@
           </label>
 
           <!--
-            Language selector: hover/:focus-within dropdown.
-            Radio buttons use .sr-only (keyboard-accessible).
-            No role="listbox"/role="option" — those require aria-selected
-            managed via JS; without it WAVE reports broken ARIA.
-            The native radio semantics are fully accessible without extra roles.
+            Language selector: custom dropdown with radio buttons and CSS :has()
+            for interactivity, no JavaScript. WAVE friendly with proper aria-labels.
           -->
           <div class="lang-dropdown" aria-label="Selector de idioma">
             <button
