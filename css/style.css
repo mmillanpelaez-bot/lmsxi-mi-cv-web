@@ -144,8 +144,8 @@
 body:has(#theme-toggle:checked) {
   /* Main colors (high-contrast on light backgrounds) */
   --color-primary: #b45309; /* amber-700  — 4.6:1 on white */
-  --color-secondary: #603E25; /* orange-700 — 5.9:1 on white */
-  --color-accent: #332B25; /* amber-600 */
+  --color-secondary: #603e25; /* orange-700 — 5.9:1 on white */
+  --color-accent: #332b25; /* amber-600 */
 
   /* Gradients redefined here for compatibility with older browsers. */
   --gradient-primary: linear-gradient(
@@ -1147,7 +1147,7 @@ blockquote footer {
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--gap-md);
   row-gap: var(--gap-sm);
-  align-items: stretch;
+  align-items: start;
 }
 
 /* Column header h2s sit in row 1 at their natural height */
@@ -1172,13 +1172,8 @@ blockquote footer {
 /* ── 18a. Skills Grid — CSS Grid (course requirement) ── */
 .skills-grid {
   display: grid;
-  /*
-    Explicit 3 columns (1 per tech group).
-    The 4th card (.skill-group:last-child) always spans all 3 via
-    grid-column: 1/-1, giving a full-width row with multi-col content.
-    This is more predictable than auto-fit which causes orphan columns
-    at intermediate viewport widths (e.g. iPad ~820px).
-  */
+  /* 3 equal columns on desktop, auto-fit to fewer columns on smaller screens
+      to avoid overflow. Last card (Soft Skills) always spans full width. */
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-sm);
   align-items: stretch;

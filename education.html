@@ -11,7 +11,7 @@
       name="description"
       content="Felipe Millán — Formación académica y complementaria."
     />
-    <title>Felipe Millán | Formación</title>
+    <title>Milláez | Formación</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,14 +19,10 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap"
     />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   </head>
   <body>
-    <!--
-      Skip link: first focusable element on every page.
-      Invisible until focused by keyboard; lets keyboard/AT users
-      bypass repeated navigation and jump straight to main content.
-      Required for WAVE "0 errors" on navigation landmark tests.
-    -->
+    <!-- Skip link (WAVE friendly) -->
     <a class="skip-link" href="#main-content">
       <span class="lang-es">Saltar al contenido principal</span>
       <span class="lang-en">Skip to main content</span>
@@ -36,26 +32,17 @@
 
     <header class="main-header">
       <nav class="main-nav" aria-label="Main navigation">
-        <!--
-          Brand: uses aria-label "Portfolio de Manuel Felipe Millán"
-          to distinguish it from the "Inicio" nav link (same href on
-          index.html) — avoids WAVE "redundant link" alert.
-        -->
         <a
           href="index.html"
           class="nav-brand"
-          aria-label="Portfolio de Manuel Felipe Millán — Ir al inicio"
+          aria-label="Portfolio de Felipe Millán — Ir al inicio"
         >
           <span class="logo-bracket" aria-hidden="true">&lt;</span>
           <span class="logo-text">millaez</span>
           <span class="logo-bracket" aria-hidden="true">/&gt;</span>
         </a>
 
-        <!--
-          .sr-only (not width:0/height:0) keeps the checkbox in the
-          keyboard tab order while hiding it visually. CSS :checked and
-          :has() selectors read its state without JavaScript.
-        -->
+        <!-- Hamburger toggle: hidden checkbox toggles .nav-menu and .lang-dropdown on :checked -->
         <input type="checkbox" id="menu-toggle" class="sr-only" />
 
         <ul class="nav-menu" role="list">
@@ -136,13 +123,7 @@
             </svg>
           </label>
 
-          <!--
-            Language selector: hover/:focus-within dropdown.
-            Radio buttons use .sr-only (keyboard-accessible).
-            No role="listbox"/role="option" — those require aria-selected
-            managed via JS; without it WAVE reports broken ARIA.
-            The native radio semantics are fully accessible without extra roles.
-          -->
+          <!-- Language selector -->
           <div class="lang-dropdown" aria-label="Selector de idioma">
             <button
               class="lang-dropdown__trigger"
@@ -228,19 +209,22 @@
         -->
         <div class="edu-flat-grid">
           <!-- Row 1: column headings -->
-          <h2>
-            <span class="lang-es">Formación Reglada</span
-            ><span class="lang-en">Formal Education</span
-            ><span class="lang-gl">Formación Regrada</span
-            ><span class="lang-de">Formale Ausbildung</span>
-          </h2>
-          <h2>
-            <span class="lang-es">Formación Complementaria</span
-            ><span class="lang-en">Complementary Training</span
-            ><span class="lang-gl">Formación Complementaria</span
-            ><span class="lang-de">Ergänzende Weiterbildung</span>
-          </h2>
-
+          <div class="edu-col">
+            <h2>
+              <span class="lang-es">Formación Reglada</span
+              ><span class="lang-en">Formal Education</span
+              ><span class="lang-gl">Formación Regrada</span
+              ><span class="lang-de">Formale Ausbildung</span>
+            </h2>
+          </div>
+          <div class="edu-col">
+            <h2>
+              <span class="lang-es">Formación Complementaria</span
+              ><span class="lang-en">Complementary Training</span
+              ><span class="lang-gl">Formación Complementaria</span
+              ><span class="lang-de">Ergänzende Weiterbildung</span>
+            </h2>
+          </div>
           <!-- Row 2: first entry from each column -->
           <article class="cv-entry" aria-labelledby="edu-1">
             <h3 id="edu-1" class="cv-entry__title">
