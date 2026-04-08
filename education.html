@@ -206,20 +206,12 @@
         </h1>
 
         <!--
-          Estructura de la sección de educación:
-
-          - Un grid con dos columnas: Formación Reglada y Formación Complementaria.
-          - Cada columna tiene su propia fila de cabecera (h2) y luego filas de entradas (article.cv-entry).
-          - Las entradas pueden incluir título (h3), fechas, institución y descripción.
-        -->
-        <!--
-          edu-flat-grid: CSS Grid de 2 columnas en escritorio.
-          Cada .edu-col agrupa su h2 + sus entradas en flex-column.
-          En móvil (1 col) las columnas apilan en orden DOM correcto:
-          toda la col. Reglada primero, luego Complementaria.
+          Education section structure:
+          - Two columns: Formal Education and Complementary Training
+          - Each column has multiple entries with title, meta (dates, institution) and description
         -->
         <div class="edu-flat-grid">
-          <!-- Columna 1 — Formación Reglada -->
+          <!-- Column 1 — Formal Education -->
           <div class="edu-col">
             <h2>
               <span class="lang-es">Formación Reglada</span
@@ -278,7 +270,7 @@
             </article>
           </div>
 
-          <!-- Columna 2 — Formación Complementaria -->
+          <!-- Column 2 — Complementary Formation -->
           <div class="edu-col">
             <h2>
               <span class="lang-es">Formación Complementaria</span
