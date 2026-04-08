@@ -17,8 +17,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&family=Inter:wght@400&family=Poppins:wght@700&display=swap"
     />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">
@@ -212,131 +212,144 @@
           - Cada columna tiene su propia fila de cabecera (h2) y luego filas de entradas (article.cv-entry).
           - Las entradas pueden incluir título (h3), fechas, institución y descripción.
         -->
+        <!--
+          edu-flat-grid: CSS Grid de 2 columnas en escritorio.
+          Cada .edu-col agrupa su h2 + sus entradas en flex-column.
+          En móvil (1 col) las columnas apilan en orden DOM correcto:
+          toda la col. Reglada primero, luego Complementaria.
+        -->
         <div class="edu-flat-grid">
-          <!-- Fila 1: cabeceras de columna — hijos directos del grid -->
-          <h2>
-            <span class="lang-es">Formación Reglada</span
-            ><span class="lang-en">Formal Education</span
-            ><span class="lang-gl">Formación Regrada</span
-            ><span class="lang-de">Formale Ausbildung</span>
-          </h2>
-          <h2>
-            <span class="lang-es">Formación Complementaria</span
-            ><span class="lang-en">Complementary Training</span
-            ><span class="lang-gl">Formación Complementaria</span
-            ><span class="lang-de">Ergänzende Weiterbildung</span>
-          </h2>
+          <!-- Columna 1 — Formación Reglada -->
+          <div class="edu-col">
+            <h2>
+              <span class="lang-es">Formación Reglada</span
+              ><span class="lang-en">Formal Education</span
+              ><span class="lang-gl">Formación Regrada</span
+              ><span class="lang-de">Formale Ausbildung</span>
+            </h2>
 
-          <!-- Fila 2 -->
-          <article class="cv-entry" aria-labelledby="edu-1">
-            <h3 id="edu-1" class="cv-entry__title">
-              <span class="lang-es"
-                ><abbr title="Ciclo Formativo de Grado Superior">CFGS</abbr>
-                Técnico Superior en Desarrollo de Aplicaciones
-                Multiplataforma</span
-              >
-              <span class="lang-en"
-                ><abbr title="Higher National Diploma">HND</abbr> in
-                Multiplatform Application Development</span
-              >
-              <span class="lang-gl"
-                ><abbr title="Ciclo Formativo de Grao Superior">CFGS</abbr>
-                Técnico Superior en Desenvolvemento de Aplicacións
-                Multiplataforma</span
-              >
-              <span class="lang-de"
-                >Höherer Berufsbildungsgang — Entwicklung von
-                Multiplattform-Anwendungen (DAM)</span
-              >
-            </h3>
-            <p class="cv-entry__meta">
-              <time datetime="2025-09">09/2025</time> –
-              <span class="lang-es">Presente</span
-              ><span class="lang-en">Present</span
-              ><span class="lang-gl">Presente</span
-              ><span class="lang-de">Heute</span> ·
-              <abbr title="Centro de Referencia Profesional">CPR</abbr> Daniel
-              Castelao, Vigo
-            </p>
-          </article>
+            <article class="cv-entry" aria-labelledby="edu-1">
+              <h3 id="edu-1" class="cv-entry__title">
+                <span class="lang-es"
+                  ><abbr title="Ciclo Formativo de Grado Superior">CFGS</abbr>
+                  Técnico Superior en Desarrollo de Aplicaciones
+                  Multiplataforma</span
+                >
+                <span class="lang-en"
+                  ><abbr title="Higher National Diploma">HND</abbr> in
+                  Multiplatform Application Development</span
+                >
+                <span class="lang-gl"
+                  ><abbr title="Ciclo Formativo de Grao Superior">CFGS</abbr>
+                  Técnico Superior en Desenvolvemento de Aplicacións
+                  Multiplataforma</span
+                >
+                <span class="lang-de"
+                  >Höherer Berufsbildungsgang — Entwicklung von
+                  Multiplattform-Anwendungen (DAM)</span
+                >
+              </h3>
+              <p class="cv-entry__meta">
+                <time datetime="2025-09">09/2025</time> –
+                <span class="lang-es">Presente</span
+                ><span class="lang-en">Present</span
+                ><span class="lang-gl">Presente</span
+                ><span class="lang-de">Heute</span> ·
+                <abbr title="Centro de Referencia Profesional">CPR</abbr> Daniel
+                Castelao, Vigo
+              </p>
+            </article>
 
-          <article class="cv-entry" aria-labelledby="edu-self">
-            <h3 id="edu-self" class="cv-entry__title">
-              <span class="lang-es"
-                >Aprendizaje Autodidacta — IA y Tecnología</span
-              ><span class="lang-en">Self-taught — AI &amp; Technology</span
-              ><span class="lang-gl"
-                >Aprendizaxe Autodidacta — IA e Tecnoloxía</span
-              ><span class="lang-de">Selbststudium — KI &amp; Technologie</span>
-            </h3>
-            <p class="cv-entry__meta">
-              2020 –
-              <span class="lang-es">Actualidad</span
-              ><span class="lang-en">Present</span
-              ><span class="lang-gl">Actualidade</span
-              ><span class="lang-de">Heute</span>
-            </p>
-            <p class="cv-entry__desc">
-              <span class="lang-es"
-                >Investigación continua en inteligencia artificial, desarrollo
-                de aplicaciones y nuevas tecnologías mediante documentación
-                técnica, tutoriales y proyectos propios.</span
-              ><span class="lang-en"
-                >Ongoing research in artificial intelligence, app development
-                and emerging technologies through technical documentation,
-                tutorials and personal projects.</span
-              ><span class="lang-gl"
-                >Investigación continua en intelixencia artificial,
-                desenvolvemento de aplicacións e novas tecnoloxías mediante
-                documentación técnica, tutoriais e proxectos propios.</span
-              ><span class="lang-de"
-                >Laufende Forschung zu KI, App-Entwicklung und neuen
-                Technologien durch technische Dokumentation, Tutorials und
-                eigene Projekte.</span
-              >
-            </p>
-          </article>
+            <article class="cv-entry" aria-labelledby="edu-2">
+              <h3 id="edu-2" class="cv-entry__title">
+                <span class="lang-es">Bachillerato — Ciencias Sociales</span
+                ><span class="lang-en"
+                  >High School Diploma — Social Sciences</span
+                ><span class="lang-gl">Bacharelato — Ciencias Sociais</span
+                ><span class="lang-de">Abitur — Sozialwissenschaften</span>
+              </h3>
+              <p class="cv-entry__meta">
+                <time datetime="2024-10">10/2024</time> –
+                <time datetime="2025-06">06/2025</time>
+                ·
+                <abbr title="Instituto de Educación Secundaria">IES</abbr>
+                Castelao, Vigo
+              </p>
+            </article>
+          </div>
 
-          <!-- Fila 3 -->
-          <article class="cv-entry" aria-labelledby="edu-2">
-            <h3 id="edu-2" class="cv-entry__title">
-              <span class="lang-es">Bachillerato — Ciencias Sociales</span
-              ><span class="lang-en">High School Diploma — Social Sciences</span
-              ><span class="lang-gl">Bacharelato — Ciencias Sociais</span
-              ><span class="lang-de">Abitur — Sozialwissenschaften</span>
-            </h3>
-            <p class="cv-entry__meta">
-              <time datetime="2024-10">10/2024</time> –
-              <time datetime="2025-06">06/2025</time>
-              ·
-              <abbr title="Instituto de Educación Secundaria">IES</abbr>
-              Castelao, Vigo
-            </p>
-          </article>
+          <!-- Columna 2 — Formación Complementaria -->
+          <div class="edu-col">
+            <h2>
+              <span class="lang-es">Formación Complementaria</span
+              ><span class="lang-en">Complementary Training</span
+              ><span class="lang-gl">Formación Complementaria</span
+              ><span class="lang-de">Ergänzende Weiterbildung</span>
+            </h2>
 
-          <article class="cv-entry" aria-labelledby="edu-extra">
-            <h3 id="edu-extra" class="cv-entry__title">
-              <span class="lang-es">Cursos y Certificados</span
-              ><span class="lang-en">Courses &amp; Certificates</span
-              ><span class="lang-gl">Cursos e Certificados</span
-              ><span class="lang-de">Kurse &amp; Zertifikate</span>
-            </h3>
-            <p class="cv-entry__desc">
-              <span class="lang-es"
-                >Añade aquí cursos online, certificaciones u otras
-                formaciones.</span
-              ><span class="lang-en"
-                >Add online courses, certifications or other training
-                here.</span
-              ><span class="lang-gl"
-                >Engade aquí cursos online, certificacións ou outras
-                formacións.</span
-              ><span class="lang-de"
-                >Füge hier Online-Kurse, Zertifizierungen oder andere
-                Weiterbildungen hinzu.</span
-              >
-            </p>
-          </article>
+            <article class="cv-entry" aria-labelledby="edu-self">
+              <h3 id="edu-self" class="cv-entry__title">
+                <span class="lang-es"
+                  >Aprendizaje Autodidacta — IA y Tecnología</span
+                ><span class="lang-en">Self-taught — AI &amp; Technology</span
+                ><span class="lang-gl"
+                  >Aprendizaxe Autodidacta — IA e Tecnoloxía</span
+                ><span class="lang-de"
+                  >Selbststudium — KI &amp; Technologie</span
+                >
+              </h3>
+              <p class="cv-entry__meta">
+                2020 –
+                <span class="lang-es">Actualidad</span
+                ><span class="lang-en">Present</span
+                ><span class="lang-gl">Actualidade</span
+                ><span class="lang-de">Heute</span>
+              </p>
+              <p class="cv-entry__desc">
+                <span class="lang-es"
+                  >Investigación continua en inteligencia artificial, desarrollo
+                  de aplicaciones y nuevas tecnologías mediante documentación
+                  técnica, tutoriales y proyectos propios.</span
+                ><span class="lang-en"
+                  >Ongoing research in artificial intelligence, app development
+                  and emerging technologies through technical documentation,
+                  tutorials and personal projects.</span
+                ><span class="lang-gl"
+                  >Investigación continua en intelixencia artificial,
+                  desenvolvemento de aplicacións e novas tecnoloxías mediante
+                  documentación técnica, tutoriais e proxectos propios.</span
+                ><span class="lang-de"
+                  >Laufende Forschung zu KI, App-Entwicklung und neuen
+                  Technologien durch technische Dokumentation, Tutorials und
+                  eigene Projekte.</span
+                >
+              </p>
+            </article>
+
+            <article class="cv-entry" aria-labelledby="edu-extra">
+              <h3 id="edu-extra" class="cv-entry__title">
+                <span class="lang-es">Cursos y Certificados</span
+                ><span class="lang-en">Courses &amp; Certificates</span
+                ><span class="lang-gl">Cursos e Certificados</span
+                ><span class="lang-de">Kurse &amp; Zertifikate</span>
+              </h3>
+              <p class="cv-entry__desc">
+                <span class="lang-es"
+                  >Añade aquí cursos online, certificaciones u otras
+                  formaciones.</span
+                ><span class="lang-en"
+                  >Add online courses, certifications or other training
+                  here.</span
+                ><span class="lang-gl"
+                  >Engade aquí cursos online, certificacións ou outras
+                  formacións.</span
+                ><span class="lang-de"
+                  >Füge hier Online-Kurse, Zertifizierungen oder andere
+                  Weiterbildungen hinzu.</span
+                >
+              </p>
+            </article>
+          </div>
         </div>
       </section>
     </main>

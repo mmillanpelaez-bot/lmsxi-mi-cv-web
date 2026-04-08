@@ -1136,11 +1136,15 @@ blockquote footer {
 }
 
 /* ============================================================
- * 17. EDUCATION FLAT GRID
- *     Flat 2-column grid: headers in row 1, then cards paired
- *     by row (CFGS|Autodidacta, Bachillerato|Cursos).
- *     Cards in the same row stretch to equal height automatically.
- *     No empty-column gaps: every row is full.
+ * 17. EDUCATION GRID
+ *     .edu-flat-grid — CSS Grid 2 columnas en escritorio.
+ *     Cada .edu-col (h2 + 2 entradas) hereda las filas del padre
+ *     con subgrid, logrando alineación cruzada entre columnas:
+ *       fila 1 → h2 | h2
+ *       fila 2 → tarjeta 1 | tarjeta 1
+ *       fila 3 → tarjeta 2 | tarjeta 2
+ *     En móvil el grid colapsa a 1 col: los edu-col apilan en
+ *     orden DOM correcto (Reglada primero, Complementaria después).
  * ============================================================ */
 .edu-flat-grid {
   display: grid;
@@ -1150,18 +1154,28 @@ blockquote footer {
   align-items: start;
 }
 
-/* Column header h2s sit in row 1 at their natural height */
-.edu-flat-grid > h2 {
+/* Cada columna abarca 3 filas (h2 + 2 tarjetas) y hereda
+   el tamaño de esas filas del grid padre mediante subgrid. */
+.edu-col {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: var(--gap-sm);
+  align-items: start;
+}
+
+/* Cabecera de columna */
+.edu-col > h2 {
   font-size: clamp(1rem, 1.8vw + 0.2rem, 1.4rem);
   margin-bottom: 0;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid
     color-mix(in srgb, var(--color-primary) 30%, var(--border));
-  align-self: end; /* baseline-align the two column headers */
+  align-self: end;
 }
 
-/* Cards are full-height flex columns so their content distributes nicely */
-.edu-flat-grid > .cv-entry {
+/* Tarjetas ocupan todo el alto de su celda subgrid */
+.edu-col > .cv-entry {
   height: 100%;
 }
 
@@ -1667,12 +1681,9 @@ blockquote footer {
     grid-template-columns: 1fr;
   }
 
-  /* Education flat grid: stack columns vertically on mobile */
+  /* Education: colapsar a 1 columna — los .edu-col apilan en orden DOM */
   .edu-flat-grid {
     grid-template-columns: 1fr;
-  }
-  .edu-flat-grid > h2:last-of-type {
-    margin-top: var(--gap-sm);
   }
 
   /* Skills: collapse to 2 cols at ≤768px */
