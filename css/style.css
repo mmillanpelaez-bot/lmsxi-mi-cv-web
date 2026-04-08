@@ -60,9 +60,9 @@
  *   --color-secondary: #67e8f9  Cyan     — code tags, skill bars, metadata
  *   --color-accent   : #fbbf24  Amber    — highlights, CTAs
  *
- * LIGHT THEME  (darkened for WCAG AA contrast on white/cream)
- *   --color-primary  : #b45309  Amber-700  (4.6:1 on white ✓)
- *   --color-secondary: #047857  Emerald-700 (5.0:1 on white ✓)
+ * LIGHT THEME  (WCAG AA contrast on white/cream)
+ *   --color-primary  : #b45309  Amber-700
+ *   --color-secondary: #047857  Emerald-700
  *   --color-accent   : #d97706  Amber-600
  * ============================================================ */
 
@@ -143,8 +143,8 @@
  * ============================================================ */
 body:has(#theme-toggle:checked) {
   /* Main colors (high-contrast on light backgrounds) */
-  --color-primary: #b45309; /* amber-700  — 4.6:1 on white */
-  --color-secondary: #603e25; /* orange-700 — 5.9:1 on white */
+  --color-primary: #b45309; /* amber-700 */
+  --color-secondary: #603e25; /* orange-700 */
   --color-accent: #332b25; /* amber-600 */
 
   /* Gradients redefined here for compatibility with older browsers. */
@@ -1137,7 +1137,7 @@ blockquote footer {
 
 /* ============================================================
  * 17. EDUCATION GRID
- *     .edu-flat-grid — CSS Grid 2 columnas en escritorio.
+ *     .edu-grid — CSS Grid 2 columnas en escritorio.
  *     Cada .edu-col (h2 + 2 entradas) hereda las filas del padre
  *     con subgrid, logrando alineación cruzada entre columnas:
  *       fila 1 → h2 | h2
@@ -1146,7 +1146,7 @@ blockquote footer {
  *     En móvil el grid colapsa a 1 col: los edu-col apilan en
  *     orden DOM correcto (Reglada primero, Complementaria después).
  * ============================================================ */
-.edu-flat-grid {
+.edu-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: var(--gap-md);
@@ -1682,7 +1682,7 @@ blockquote footer {
   }
 
   /* Education: colapsar a 1 columna — los .edu-col apilan en orden DOM */
-  .edu-flat-grid {
+  .edu-grid {
     grid-template-columns: 1fr;
   }
 
