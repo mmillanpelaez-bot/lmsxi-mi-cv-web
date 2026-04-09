@@ -371,29 +371,59 @@
               <li>CSS :has()</li>
             </ul>
           </article>
-
-          <article class="cv-entry" aria-labelledby="proj-placeholder">
-            <h3 id="proj-placeholder" class="cv-entry__title">
-              <span class="lang-es">Añadir más proyectos</span
-              ><span class="lang-en">Add more projects</span
-              ><span class="lang-gl">Engadir máis proxectos</span
-              ><span class="lang-de">Weitere Projekte</span>
+          <article class="cv-entry" aria-labelledby="proj-boletines">
+            <h3 id="proj-boletines" class="cv-entry__title">
+              <span class="lang-es">Gestor de Boletines — Menú Dinámico</span
+              ><span class="lang-en">Bulletin Manager — Dynamic Menu</span
+              ><span class="lang-gl">Xestor de Boletíns — Menú Dinámico</span
+              ><span class="lang-de">Bulletin-Manager — Dynamisches Menü</span>
             </h3>
+            <p class="cv-entry__meta">
+              <time datetime="2025">2025</time> ·
+              <span class="lang-es">Módulo Programación — DAM</span
+              ><span class="lang-en">Programming Module — DAM</span
+              ><span class="lang-gl">Módulo Programación — DAM</span
+              ><span class="lang-de">Modul Programmierung — DAM</span>
+            </p>
             <p class="cv-entry__desc">
               <span class="lang-es"
-                >Incluye aquí los proyectos de otros módulos del ciclo (Java,
-                BBDD, Android…).</span
+                >Aplicación CLI en Python que organiza los boletines del módulo
+                de forma dinámica: <code>main.py</code> escanea la carpeta
+                <code>boletines/</code> al arrancar usando <code>pkgutil</code>,
+                importa cada <code>bulletin_NN.py</code> y cada módulo se
+                auto-registra. Añadir un boletín nuevo solo requiere crear su
+                archivo; el menú se actualiza solo.</span
               ><span class="lang-en"
-                >Include here projects from other modules of the course (Java,
-                DB, Android…).</span
+                >CLI application in Python that organises module bulletins
+                dynamically: <code>main.py</code> scans the
+                <code>boletines/</code> folder at startup using
+                <code>pkgutil</code>, imports each <code>bulletin_NN.py</code>,
+                and each module self-registers. Adding a new bulletin only
+                requires creating its file; the menu updates
+                automatically.</span
               ><span class="lang-gl"
-                >Inclúe aquí os proxectos doutros módulos do ciclo (Java, BBDD,
-                Android…).</span
+                >Aplicación CLI en Python que organiza os boletíns do módulo de
+                forma dinámica: <code>main.py</code> escanea o cartafol
+                <code>boletines/</code> ao arrancar usando <code>pkgutil</code>,
+                importa cada <code>bulletin_NN.py</code> e cada módulo
+                auto-rexístrase. Engadir un boletín novo só require crear o seu
+                arquivo; o menú actualízase só.</span
               ><span class="lang-de"
-                >Füge hier Projekte aus anderen Modulen hinzu (Java, DB,
-                Android…).</span
+                >CLI-Anwendung in Python zur dynamischen Verwaltung von
+                Modul-Bulletins: <code>main.py</code> scannt beim Start den
+                Ordner <code>boletines/</code> mit <code>pkgutil</code>,
+                importiert jede <code>bulletin_NN.py</code> und jedes Modul
+                registriert sich selbst. Ein neues Bulletin hinzuzufügen
+                erfordert nur das Erstellen der Datei; das Menü aktualisiert
+                sich automatisch.</span
               >
             </p>
+            <ul class="cv-entry__tags">
+              <li>Python</li>
+              <li>CLI</li>
+              <li>pkgutil</li>
+              <li>OOP</li>
+            </ul>
           </article>
         </div>
       </section>
