@@ -54,7 +54,7 @@ Se ha reservado Grid para **cuadrículas de contenido** donde importa el control
 
 ## 3. Lo más difícil y cómo lo resolví
 
-Siendo honesto, Juan: lo que más me comió la cabeza fui yo mismo. Soy perfeccionista, cabezota y muy curioso — podía haber hecho algo mucho más simple y cumplir el enunciado igual, pero quería hacer algo chulo. Dicho esto, hubo retos técnicos reales.
+Siendo honesto, Juan: lo que más me comió la cabeza, fui yo mismo. Soy perfeccionista, cabezota y muy curioso — podía haber hecho algo mucho más simple y cumplir el enunciado igual, pero quería hacer algo chulo. Dicho esto, hubo retos técnicos reales.
 
 **El tema y el selector de idioma sin JavaScript** fueron lo más elaborado. La primera implementación usaba el combinador `~` (hermano general): el checkbox estaba antes del `.nav-menu` en el DOM y `#theme-toggle:checked ~ .main-content` seleccionaba los elementos siguientes. Funcionaba en algunos casos, pero el combinador `~` solo alcanza hermanos posteriores en el mismo nivel, así que en cuanto un elemento quedaba anidado diferente o en otro contenedor, dejaba de funcionar. Tuve que restructurar el HTML varias veces para que los selectores llegaran donde necesitaba, y llegó un punto en que era insostenible.
 
